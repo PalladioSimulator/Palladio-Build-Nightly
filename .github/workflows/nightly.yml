@@ -9,6 +9,7 @@ jobs:
   Palladio-Supporting-Branding:
     runs-on: self-hosted
     needs: []
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -24,6 +25,7 @@ jobs:
   Palladio-Example-Models:
     runs-on: self-hosted
     needs: []
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -39,6 +41,7 @@ jobs:
   Palladio-P2Mirror-CBIAggregator:
     runs-on: self-hosted
     needs: []
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -54,6 +57,7 @@ jobs:
   Palladio-ThirdParty-Library:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -69,6 +73,7 @@ jobs:
   Palladio-Core-Commons:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -84,6 +89,7 @@ jobs:
   Palladio-ThirdParty-YakinduStateCharts:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -99,6 +105,7 @@ jobs:
   Palladio-ThirdParty-EMFProfiles:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -114,6 +121,7 @@ jobs:
   Palladio-Supporting-EclipseJavaDevelopmentTools:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -129,6 +137,7 @@ jobs:
   Palladio-ReverseEngineering-Java:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -144,6 +153,7 @@ jobs:
   Palladio-ReverseEngineering-Docker:
     runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -159,6 +169,7 @@ jobs:
   Palladio-Supporting-WorkflowEngine:
     runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -174,6 +185,7 @@ jobs:
   Palladio-ThirdParty-Wrapper:
     runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -189,6 +201,7 @@ jobs:
   Palladio-Supporting-FeatureModel:
     runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -204,6 +217,7 @@ jobs:
   Palladio-QuAL-MetricSpecification:
     runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -219,6 +233,7 @@ jobs:
   Palladio-Supporting-MDSDProfiles:
     runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -234,6 +249,7 @@ jobs:
   Palladio-QuAL-MeasurementFramework:
     runs-on: self-hosted
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -249,6 +265,7 @@ jobs:
   Palladio-Simulation-AbstractSimEngine:
     runs-on: self-hosted
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -264,6 +281,7 @@ jobs:
   Palladio-QuAL-SensorFramework:
     runs-on: self-hosted
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -279,6 +297,7 @@ jobs:
   Palladio-QuAL-EDP2:
     runs-on: self-hosted
     needs: [Palladio-QuAL-MeasurementFramework, Palladio-Simulation-AbstractSimEngine, Palladio-QuAL-SensorFramework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -294,6 +313,7 @@ jobs:
   Palladio-Core-PCM:
     runs-on: self-hosted
     needs: [Palladio-QuAL-EDP2]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -309,6 +329,7 @@ jobs:
   Palladio-QuAL-ProbeFramework:
     runs-on: self-hosted
     needs: [Palladio-QuAL-EDP2]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -324,6 +345,7 @@ jobs:
   Palladio-QuAL-RecorderFramework:
     runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -339,6 +361,7 @@ jobs:
   Palladio-Editors-Commons:
     runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -354,6 +377,7 @@ jobs:
   Palladio-Simulation-Scheduler:
     runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -369,6 +393,7 @@ jobs:
   Palladio-Addons-Power-ProfilingImport:
     runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -384,6 +409,7 @@ jobs:
   Palladio-Addons-FluentApiModelGenerator:
     runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -399,6 +425,7 @@ jobs:
   Palladio-Analyzer-Framework:
     runs-on: self-hosted
     needs: [Palladio-QuAL-RecorderFramework, Palladio-Editors-Commons, Palladio-Simulation-Scheduler, Palladio-Addons-Power-ProfilingImport, Palladio-Addons-FluentApiModelGenerator]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -414,6 +441,7 @@ jobs:
   Palladio-Analyzer-Solver:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Framework]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -429,6 +457,7 @@ jobs:
   Palladio-Editors-GMF:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -444,6 +473,7 @@ jobs:
   Palladio-QuAL-MonitorRepository:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -459,6 +489,7 @@ jobs:
   Palladio-ThirdParty-CloudScaleUsageEvolution:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -474,6 +505,7 @@ jobs:
   Palladio-QuAL-ExperimentAnalysis:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -489,6 +521,7 @@ jobs:
   Palladio-Analyzer-Reliability:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -504,6 +537,7 @@ jobs:
   Palladio-Editors-Tree:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -519,6 +553,7 @@ jobs:
   Palladio-ReverseEngineering-SoMoX:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -534,6 +569,7 @@ jobs:
   Palladio-ReverseEngineering-SoMoX-JaMoPP:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -549,6 +585,7 @@ jobs:
   Palladio-Addons-Power:
     runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -564,6 +601,7 @@ jobs:
   Palladio-Addons-ServiceLevelObjectives:
     runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -579,6 +617,7 @@ jobs:
   Palladio-Analyzer-SimuCom:
     runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -594,6 +633,7 @@ jobs:
   Palladio-ReverseEngineering-SoMoX-RuleEngine:
     runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -609,6 +649,7 @@ jobs:
   Palladio-Analyzer-ProtoCom:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -624,6 +665,7 @@ jobs:
   Palladio-Analyzer-SimuLizar:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -639,6 +681,7 @@ jobs:
   Palladio-Addons-Power-Regression:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -654,6 +697,7 @@ jobs:
   Palladio-Addons-PerOpteryx:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -669,6 +713,7 @@ jobs:
   Palladio-Addons-SimuComExactSchedulers:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -684,6 +729,7 @@ jobs:
   Palladio-Addons-Power-CaseStudy:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -699,6 +745,7 @@ jobs:
   Palladio-Analyzer-EventSim:
     runs-on: self-hosted
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -714,6 +761,7 @@ jobs:
   Palladio-Addons-Palladio_TX:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -729,6 +777,7 @@ jobs:
   Palladio-Addons-MeasurementsUI:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -744,6 +793,7 @@ jobs:
   Palladio-Analyzer-SimuLizar-Power:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -759,6 +809,7 @@ jobs:
   Palladio-Addons-ExperimentAutomation:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -774,6 +825,7 @@ jobs:
   Palladio-Addons-CostEfficiency:
     runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -789,6 +841,7 @@ jobs:
   Palladio-Addon-ArchitecturalTemplates:
     runs-on: self-hosted
     needs: [Palladio-Addons-Palladio_TX, Palladio-Addons-MeasurementsUI, Palladio-Analyzer-SimuLizar-Power, Palladio-Addons-ExperimentAutomation, Palladio-Addons-CostEfficiency]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -804,6 +857,7 @@ jobs:
   Palladio-Addon-ArchitecturalTemplates-LoadBalancing:
     runs-on: self-hosted
     needs: [Palladio-Addon-ArchitecturalTemplates]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -819,6 +873,7 @@ jobs:
   Palladio-Example-Models-Package:
     runs-on: self-hosted
     needs: [Palladio-Addon-ArchitecturalTemplates]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -834,6 +889,7 @@ jobs:
   Palladio-Editors-Sirius:
     runs-on: self-hosted
     needs: [Palladio-Addon-ArchitecturalTemplates-LoadBalancing, Palladio-Example-Models-Package]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -849,6 +905,7 @@ jobs:
   Palladio-Supporting-EMFProfilesEditor:
     runs-on: self-hosted
     needs: [Palladio-Editors-Sirius]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -864,6 +921,7 @@ jobs:
   Palladio-Addons-Indirections:
     runs-on: self-hosted
     needs: [Palladio-Editors-Sirius]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -879,6 +937,7 @@ jobs:
   Palladio-Build-UpdateSite:
     runs-on: self-hosted
     needs: [Palladio-Supporting-EMFProfilesEditor, Palladio-Addons-Indirections]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -894,6 +953,7 @@ jobs:
   Palladio-Bench-Product:
     runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -909,6 +969,7 @@ jobs:
   Palladio-Build-InstallationTest-Release:
     runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -924,6 +985,7 @@ jobs:
   Palladio-Build-InstallationTest-Nightly:
     runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:
@@ -939,6 +1001,7 @@ jobs:
   Palladio-Bench-Oomph:
     runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
+    if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
         with:

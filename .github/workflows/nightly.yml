@@ -742,41 +742,9 @@ jobs:
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
           remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
-  Palladio-Analyzer-EventSim:
-    runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
-    if: success() || failure()
-    steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-EventSim
-          deploy-updatesite: 'releng/edu.kit.ipd.sdq.eventsim.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
-  Palladio-Addons-Palladio_TX:
-    runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
-    if: success() || failure()
-    steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-Palladio.TX
-          deploy-updatesite: 'releng/org.palladiosimulator.palladio-tx.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Addons-MeasurementsUI:
     runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
@@ -792,7 +760,7 @@ jobs:
 
   Palladio-Analyzer-SimuLizar-Power:
     runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
@@ -808,7 +776,7 @@ jobs:
 
   Palladio-Addons-ExperimentAutomation:
     runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
@@ -824,7 +792,7 @@ jobs:
 
   Palladio-Addons-CostEfficiency:
     runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy, Palladio-Analyzer-EventSim]
+    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main
@@ -840,7 +808,7 @@ jobs:
 
   Palladio-Addon-ArchitecturalTemplates:
     runs-on: self-hosted
-    needs: [Palladio-Addons-Palladio_TX, Palladio-Addons-MeasurementsUI, Palladio-Analyzer-SimuLizar-Power, Palladio-Addons-ExperimentAutomation, Palladio-Addons-CostEfficiency]
+    needs: [Palladio-Addons-MeasurementsUI, Palladio-Analyzer-SimuLizar-Power, Palladio-Addons-ExperimentAutomation, Palladio-Addons-CostEfficiency]
     if: success() || failure()
     steps:
       - uses: Nicolas-Boltz/BuildPipelineActionTest@main

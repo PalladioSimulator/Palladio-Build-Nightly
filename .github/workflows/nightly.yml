@@ -6,6 +6,22 @@ on:
   - cron: "0 0 * * *"
 
 jobs:
+  Palladio-Analyzer-SimExp:
+    runs-on: self-hosted
+    needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
+    if: success() || failure()
+    steps:
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
+        with:
+          use-display-output: true
+          build-repository: PalladioSimulator/Palladio-Analyzer-SimExp
+          deploy-updatesite: 'releng/org.palladiosimulator.simexp.updatesite/target/repository'
+          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+
   Palladio-Supporting-Branding:
     runs-on: self-hosted
     needs: []

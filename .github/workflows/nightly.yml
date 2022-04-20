@@ -11,7 +11,7 @@ jobs:
     needs: []
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Supporting-Branding
@@ -27,7 +27,7 @@ jobs:
     needs: []
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Example-Models
@@ -43,7 +43,7 @@ jobs:
     needs: []
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-P2Mirror-CBIAggregator
@@ -59,7 +59,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ThirdParty-Library
@@ -75,7 +75,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Core-Commons
@@ -91,7 +91,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts
@@ -107,7 +107,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ThirdParty-EMFProfiles
@@ -123,7 +123,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Supporting-EclipseJavaDevelopmentTools
@@ -139,7 +139,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ReverseEngineering-Java
@@ -155,7 +155,7 @@ jobs:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ReverseEngineering-Docker
@@ -171,7 +171,7 @@ jobs:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Supporting-WorkflowEngine
@@ -187,7 +187,7 @@ jobs:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ThirdParty-Wrapper
@@ -203,7 +203,7 @@ jobs:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Supporting-FeatureModel
@@ -219,7 +219,7 @@ jobs:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-MetricSpecification
@@ -235,7 +235,7 @@ jobs:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Supporting-MDSDProfiles
@@ -251,7 +251,7 @@ jobs:
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-MeasurementFramework
@@ -267,7 +267,7 @@ jobs:
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Simulation-AbstractSimEngine
@@ -283,7 +283,7 @@ jobs:
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-SensorFramework
@@ -299,7 +299,7 @@ jobs:
     needs: [Palladio-QuAL-MeasurementFramework, Palladio-Simulation-AbstractSimEngine, Palladio-QuAL-SensorFramework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-EDP2
@@ -315,7 +315,7 @@ jobs:
     needs: [Palladio-QuAL-EDP2]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Core-PCM
@@ -331,7 +331,7 @@ jobs:
     needs: [Palladio-QuAL-EDP2]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-ProbeFramework
@@ -347,7 +347,7 @@ jobs:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-RecorderFramework
@@ -363,7 +363,7 @@ jobs:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Editors-Commons
@@ -379,7 +379,7 @@ jobs:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Simulation-Scheduler
@@ -395,7 +395,7 @@ jobs:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-Power-ProfilingImport
@@ -411,7 +411,7 @@ jobs:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-FluentApiModelGenerator
@@ -427,7 +427,7 @@ jobs:
     needs: [Palladio-QuAL-RecorderFramework, Palladio-Editors-Commons, Palladio-Simulation-Scheduler, Palladio-Addons-Power-ProfilingImport, Palladio-Addons-FluentApiModelGenerator]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-Framework
@@ -443,7 +443,7 @@ jobs:
     needs: [Palladio-Analyzer-Framework]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-Solver
@@ -459,7 +459,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Editors-GMF
@@ -475,7 +475,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-MonitorRepository
@@ -491,7 +491,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution
@@ -507,7 +507,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-QuAL-ExperimentAnalysis
@@ -523,7 +523,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-Reliability
@@ -539,7 +539,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Editors-Tree
@@ -555,7 +555,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX
@@ -571,7 +571,7 @@ jobs:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-JaMoPP
@@ -587,7 +587,7 @@ jobs:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-Power
@@ -603,7 +603,7 @@ jobs:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-ServiceLevelObjectives
@@ -619,7 +619,7 @@ jobs:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-SimuCom
@@ -635,7 +635,7 @@ jobs:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-RuleEngine
@@ -651,7 +651,7 @@ jobs:
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-ProtoCom
@@ -667,7 +667,7 @@ jobs:
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-SimuLizar
@@ -683,7 +683,7 @@ jobs:
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-Power-Regression
@@ -699,7 +699,7 @@ jobs:
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-PerOpteryx
@@ -715,7 +715,7 @@ jobs:
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-SimuComExactSchedulers
@@ -731,7 +731,7 @@ jobs:
     needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-Power-CaseStudy
@@ -747,7 +747,7 @@ jobs:
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-MeasurementsUI
@@ -763,7 +763,7 @@ jobs:
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Analyzer-SimuLizar-Power
@@ -779,7 +779,7 @@ jobs:
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-ExperimentAutomation
@@ -795,7 +795,7 @@ jobs:
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-CostEfficiency
@@ -811,7 +811,7 @@ jobs:
     needs: [Palladio-Addons-MeasurementsUI, Palladio-Analyzer-SimuLizar-Power, Palladio-Addons-ExperimentAutomation, Palladio-Addons-CostEfficiency]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates
@@ -827,7 +827,7 @@ jobs:
     needs: [Palladio-Addon-ArchitecturalTemplates]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing
@@ -843,7 +843,7 @@ jobs:
     needs: [Palladio-Addon-ArchitecturalTemplates]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Example-Models-Package
@@ -859,7 +859,7 @@ jobs:
     needs: [Palladio-Addon-ArchitecturalTemplates-LoadBalancing, Palladio-Example-Models-Package]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Editors-Sirius
@@ -875,7 +875,7 @@ jobs:
     needs: [Palladio-Editors-Sirius]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Supporting-EMFProfilesEditor
@@ -891,7 +891,7 @@ jobs:
     needs: [Palladio-Editors-Sirius]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Addons-Indirections
@@ -907,7 +907,7 @@ jobs:
     needs: [Palladio-Supporting-EMFProfilesEditor, Palladio-Addons-Indirections]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Build-UpdateSite
@@ -923,7 +923,7 @@ jobs:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Bench-Product
@@ -939,7 +939,7 @@ jobs:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Release
@@ -955,7 +955,7 @@ jobs:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Nightly
@@ -971,7 +971,7 @@ jobs:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
     steps:
-      - uses: Nicolas-Boltz/BuildPipelineActionTest@main
+      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
         with:
           use-display-output: true
           build-repository: PalladioSimulator/Palladio-Bench-Oomph

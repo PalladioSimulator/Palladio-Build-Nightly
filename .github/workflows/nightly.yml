@@ -404,23 +404,7 @@ jobs:
           remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
           remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
-  Palladio-Addons-Power-ProfilingImport:
-    runs-on: self-hosted
-    needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
-    if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-Power-ProfilingImport
-          deploy-updatesite: 'releng/org.palladiosimulator.power-profilingimport.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }
 
   Palladio-Addons-FluentApiModelGenerator:
     runs-on: self-hosted
@@ -440,7 +424,7 @@ jobs:
 
   Palladio-Analyzer-Framework:
     runs-on: self-hosted
-    needs: [Palladio-QuAL-RecorderFramework, Palladio-Editors-Commons, Palladio-Simulation-Scheduler, Palladio-Addons-Power-ProfilingImport, Palladio-Addons-FluentApiModelGenerator]
+    needs: [Palladio-QuAL-RecorderFramework, Palladio-Editors-Commons, Palladio-Simulation-Scheduler, Palladio-Addons-FluentApiModelGenerator]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -598,22 +582,6 @@ jobs:
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
           remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
-  Palladio-Addons-Power:
-    runs-on: self-hosted
-    needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
-    if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-Power
-          deploy-updatesite: 'releng/org.palladiosimulator.power.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Addons-ServiceLevelObjectives:
     runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
@@ -664,7 +632,7 @@ jobs:
 
   Palladio-Analyzer-ProtoCom:
     runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -680,7 +648,7 @@ jobs:
 
   Palladio-Analyzer-SimuLizar:
     runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -694,25 +662,9 @@ jobs:
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
           remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
-  Palladio-Addons-Power-Regression:
-    runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
-    if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-Power-Regression
-          deploy-updatesite: 'releng/org.palladiosimulator.power-regression.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Addons-PerOpteryx:
     runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -728,7 +680,7 @@ jobs:
 
   Palladio-Addons-SimuComExactSchedulers:
     runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -742,25 +694,9 @@ jobs:
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
           remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
-  Palladio-Addons-Power-CaseStudy:
-    runs-on: self-hosted
-    needs: [Palladio-Addons-Power, Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
-    if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-Power-CaseStudy
-          deploy-updatesite: 'releng/org.palladiosimulator.power-casestudies.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Addons-MeasurementsUI:
     runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
+    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -774,25 +710,9 @@ jobs:
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
           remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
-  Palladio-Analyzer-SimuLizar-Power:
-    runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
-    if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-SimuLizar-Power
-          deploy-updatesite: 'releng/org.palladiosimulator.simulizar.power.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Addons-ExperimentAutomation:
     runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
+    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
@@ -806,25 +726,9 @@ jobs:
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
           remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
-  Palladio-Addons-CostEfficiency:
-    runs-on: self-hosted
-    needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-Power-Regression, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers, Palladio-Addons-Power-CaseStudy]
-    if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-CostEfficiency
-          deploy-updatesite: 'releng/org.palladiosimulator.addons.costefficiency.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Addon-ArchitecturalTemplates:
     runs-on: self-hosted
-    needs: [Palladio-Addons-MeasurementsUI, Palladio-Analyzer-SimuLizar-Power, Palladio-Addons-ExperimentAutomation, Palladio-Addons-CostEfficiency]
+    needs: [Palladio-Addons-MeasurementsUI, Palladio-Addons-ExperimentAutomation]
     if: success() || failure()
     steps:
       - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2

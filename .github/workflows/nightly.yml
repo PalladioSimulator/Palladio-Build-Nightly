@@ -404,7 +404,7 @@ jobs:
           remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
           remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
           remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }
+          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-FluentApiModelGenerator:
     runs-on: self-hosted

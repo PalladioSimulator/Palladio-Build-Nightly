@@ -7,898 +7,841 @@ on:
 
 jobs:
   Palladio-Analyzer-SimExp:
-    runs-on: self-hosted
     needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-SimExp
-          deploy-updatesite: 'releng/org.palladiosimulator.simexp.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-SimExp
+      deploy-updatesite: 'releng/org.palladiosimulator.simexp.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-Branding:
-    runs-on: self-hosted
     needs: []
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Supporting-Branding
-          deploy-updatesite: 'releng/org.palladiosimulator.branding.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Supporting-Branding
+      deploy-updatesite: 'releng/org.palladiosimulator.branding.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Example-Models:
-    runs-on: self-hosted
     needs: []
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Example-Models
-          deploy-updatesite: 'target/deploy'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Example-Models
+      deploy-updatesite: 'target/deploy'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-P2Mirror-CBIAggregator:
-    runs-on: self-hosted
     needs: []
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-P2Mirror-CBIAggregator
-          deploy-updatesite: 'target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-P2Mirror-CBIAggregator
+      deploy-updatesite: 'target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ThirdParty-Library:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ThirdParty-Library
-          deploy-updatesite: 'target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ThirdParty-Library
+      deploy-updatesite: 'target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Core-Commons:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Core-Commons
-          deploy-updatesite: 'releng/org.palladiosimulator.core-commons.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Core-Commons
+      deploy-updatesite: 'releng/org.palladiosimulator.core-commons.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ThirdParty-YakinduStateCharts:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts
-          deploy-updatesite: 'releng/org.palladiosimulator.yakindu.statecharts.utils.repository/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts
+      deploy-updatesite: 'releng/org.palladiosimulator.yakindu.statecharts.utils.repository/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ThirdParty-EMFProfiles:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ThirdParty-EMFProfiles
-          deploy-updatesite: 'releng/org.palladiosimulator.emf-profiles.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ThirdParty-EMFProfiles
+      deploy-updatesite: 'releng/org.palladiosimulator.emf-profiles.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-EclipseJavaDevelopmentTools:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Supporting-EclipseJavaDevelopmentTools
-          deploy-updatesite: 'releng/org.palladiosimulator.jdt.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Supporting-EclipseJavaDevelopmentTools
+      deploy-updatesite: 'releng/org.palladiosimulator.jdt.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ReverseEngineering-Java:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ReverseEngineering-Java
-          deploy-updatesite: 'releng/org.palladiosimulator.jdt.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ReverseEngineering-Java
+      deploy-updatesite: 'releng/org.palladiosimulator.jdt.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ReverseEngineering-Docker:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ReverseEngineering-Docker
-          deploy-updatesite: 'releng/org.palladiosimulator.somox.docker.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ReverseEngineering-Docker
+      deploy-updatesite: 'releng/org.palladiosimulator.somox.docker.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-WorkflowEngine:
-    runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Supporting-WorkflowEngine
-          deploy-updatesite: 'releng/de.uka.ipd.sdq.workflow.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Supporting-WorkflowEngine
+      deploy-updatesite: 'releng/de.uka.ipd.sdq.workflow.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ThirdParty-Wrapper:
-    runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ThirdParty-Wrapper
-          deploy-updatesite: 'releng/org.palladiosimulator.thirdpartywrapper.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ThirdParty-Wrapper
+      deploy-updatesite: 'releng/org.palladiosimulator.thirdpartywrapper.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-FeatureModel:
-    runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Supporting-FeatureModel
-          deploy-updatesite: 'releng/org.palladiosimulator.featuremodel.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Supporting-FeatureModel
+      deploy-updatesite: 'releng/org.palladiosimulator.featuremodel.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-MetricSpecification:
-    runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-MetricSpecification
-          deploy-updatesite: 'releng/org.palladiosimulator.metricspecification.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-MetricSpecification
+      deploy-updatesite: 'releng/org.palladiosimulator.metricspecification.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-MDSDProfiles:
-    runs-on: self-hosted
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Supporting-MDSDProfiles
-          deploy-updatesite: 'releng/org.palladiosimulator.mdsdprofiles.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Supporting-MDSDProfiles
+      deploy-updatesite: 'releng/org.palladiosimulator.mdsdprofiles.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-MeasurementFramework:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-MeasurementFramework
-          deploy-updatesite: 'releng/org.palladiosimulator.measurementframework.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-MeasurementFramework
+      deploy-updatesite: 'releng/org.palladiosimulator.measurementframework.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Simulation-AbstractSimEngine:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Simulation-AbstractSimEngine
-          deploy-updatesite: 'releng/org.palladiosimulator.simulation.abstractsimengine.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Simulation-AbstractSimEngine
+      deploy-updatesite: 'releng/org.palladiosimulator.simulation.abstractsimengine.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-SensorFramework:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-SensorFramework
-          deploy-updatesite: 'releng/org.palladiosimulator.sensorframework.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-SensorFramework
+      deploy-updatesite: 'releng/org.palladiosimulator.sensorframework.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-EDP2:
-    runs-on: self-hosted
     needs: [Palladio-QuAL-MeasurementFramework, Palladio-Simulation-AbstractSimEngine, Palladio-QuAL-SensorFramework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-EDP2
-          deploy-updatesite: 'releng/org.palladiosimulator.edp2.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-EDP2
+      deploy-updatesite: 'releng/org.palladiosimulator.edp2.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Core-PCM:
-    runs-on: self-hosted
     needs: [Palladio-QuAL-EDP2]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Core-PCM
-          deploy-updatesite: 'releng/org.palladiosimulator.pcm.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Core-PCM
+      deploy-updatesite: 'releng/org.palladiosimulator.pcm.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-ProbeFramework:
-    runs-on: self-hosted
     needs: [Palladio-QuAL-EDP2]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-ProbeFramework
-          deploy-updatesite: 'releng/org.palladiosimulator.probeframework.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-ProbeFramework
+      deploy-updatesite: 'releng/org.palladiosimulator.probeframework.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-RecorderFramework:
-    runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-RecorderFramework
-          deploy-updatesite: 'releng/org.palladiosimulator.recorderframework.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-RecorderFramework
+      deploy-updatesite: 'releng/org.palladiosimulator.recorderframework.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Editors-Commons:
-    runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Editors-Commons
-          deploy-updatesite: 'releng/org.palladiosimulator.editors-commons.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Editors-Commons
+      deploy-updatesite: 'releng/org.palladiosimulator.editors-commons.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Simulation-Scheduler:
-    runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Simulation-Scheduler
-          deploy-updatesite: 'releng/org.palladiosimulator.scheduler.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Simulation-Scheduler
+      deploy-updatesite: 'releng/org.palladiosimulator.scheduler.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-FluentApiModelGenerator:
-    runs-on: self-hosted
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-FluentApiModelGenerator
-          deploy-updatesite: 'releng/org.palladiosimulator.generator.fluent.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-FluentApiModelGenerator
+      deploy-updatesite: 'releng/org.palladiosimulator.generator.fluent.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-Framework:
-    runs-on: self-hosted
     needs: [Palladio-QuAL-RecorderFramework, Palladio-Editors-Commons, Palladio-Simulation-Scheduler, Palladio-Addons-FluentApiModelGenerator]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-Framework
-          deploy-updatesite: 'releng/org.palladiosimulator.framework.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-Framework
+      deploy-updatesite: 'releng/org.palladiosimulator.framework.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-Solver:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Framework]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-Solver
-          deploy-updatesite: 'releng/org.palladiosimulator.solver.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-Solver
+      deploy-updatesite: 'releng/org.palladiosimulator.solver.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Editors-GMF:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Editors-GMF
-          deploy-updatesite: 'releng/org.palladiosimulator.editorsgmf.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Editors-GMF
+      deploy-updatesite: 'releng/org.palladiosimulator.editorsgmf.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-MonitorRepository:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-MonitorRepository
-          deploy-updatesite: 'releng/org.palladiosimulator.monitorrepository.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-MonitorRepository
+      deploy-updatesite: 'releng/org.palladiosimulator.monitorrepository.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ThirdParty-CloudScaleUsageEvolution:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution
-          deploy-updatesite: 'releng/org.scaledl.usageevolution.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution
+      deploy-updatesite: 'releng/org.scaledl.usageevolution.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-ExperimentAnalysis:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-QuAL-ExperimentAnalysis
-          deploy-updatesite: 'releng/org.palladiosimulator.experimentanalysis.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-QuAL-ExperimentAnalysis
+      deploy-updatesite: 'releng/org.palladiosimulator.experimentanalysis.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-Reliability:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-Reliability
-          deploy-updatesite: 'releng/org.palladiosimulator.reliability.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-Reliability
+      deploy-updatesite: 'releng/org.palladiosimulator.reliability.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Editors-Tree:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Editors-Tree
-          deploy-updatesite: 'releng/org.palladiosimulator.editorstree.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Editors-Tree
+      deploy-updatesite: 'releng/org.palladiosimulator.editorstree.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ReverseEngineering-SoMoX:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX
-          deploy-updatesite: 'releng/org.somox.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX
+      deploy-updatesite: 'releng/org.somox.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ReverseEngineering-SoMoX-JaMoPP:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-JaMoPP
-          deploy-updatesite: 'releng/org.somox.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-JaMoPP
+      deploy-updatesite: 'releng/org.somox.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-ServiceLevelObjectives:
-    runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-ServiceLevelObjectives
-          deploy-updatesite: 'releng/org.palladiosimulator.servicelevelobjectives.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-ServiceLevelObjectives
+      deploy-updatesite: 'releng/org.palladiosimulator.servicelevelobjectives.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-SimuCom:
-    runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-SimuCom
-          deploy-updatesite: 'releng/org.palladiosimulator.simucom.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-SimuCom
+      deploy-updatesite: 'releng/org.palladiosimulator.simucom.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ReverseEngineering-SoMoX-RuleEngine:
-    runs-on: self-hosted
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-RuleEngine
-          deploy-updatesite: 'releng/org.palladiosimulator.somox.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-RuleEngine
+      deploy-updatesite: 'releng/org.palladiosimulator.somox.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-ProtoCom:
-    runs-on: self-hosted
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-ProtoCom
-          deploy-updatesite: 'releng/org.palladiosimulator.protocom.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-ProtoCom
+      deploy-updatesite: 'releng/org.palladiosimulator.protocom.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-SimuLizar:
-    runs-on: self-hosted
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Analyzer-SimuLizar
-          deploy-updatesite: 'releng/org.palladiosimulator.simulizar.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Analyzer-SimuLizar
+      deploy-updatesite: 'releng/org.palladiosimulator.simulizar.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-PerOpteryx:
-    runs-on: self-hosted
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-PerOpteryx
-          deploy-updatesite: 'releng/org.palladiosimulator.peropteryx.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-PerOpteryx
+      deploy-updatesite: 'releng/org.palladiosimulator.peropteryx.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-SimuComExactSchedulers:
-    runs-on: self-hosted
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-SimuComExactSchedulers
-          deploy-updatesite: 'releng/org.palladiosimulator.simucomexactschedulers.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-SimuComExactSchedulers
+      deploy-updatesite: 'releng/org.palladiosimulator.simucomexactschedulers.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-MeasurementsUI:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-MeasurementsUI
-          deploy-updatesite: 'releng/org.palladiosimulator.measurementsui.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-MeasurementsUI
+      deploy-updatesite: 'releng/org.palladiosimulator.measurementsui.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-ExperimentAutomation:
-    runs-on: self-hosted
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-ExperimentAutomation
-          deploy-updatesite: 'releng/org.palladiosimulator.experimentautomation.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-ExperimentAutomation
+      deploy-updatesite: 'releng/org.palladiosimulator.experimentautomation.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addon-ArchitecturalTemplates:
-    runs-on: self-hosted
     needs: [Palladio-Addons-MeasurementsUI, Palladio-Addons-ExperimentAutomation]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates
-          deploy-updatesite: 'releng/org.palladiosimulator.architecturaltemplates.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates
+      deploy-updatesite: 'releng/org.palladiosimulator.architecturaltemplates.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addon-ArchitecturalTemplates-LoadBalancing:
-    runs-on: self-hosted
     needs: [Palladio-Addon-ArchitecturalTemplates]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing
-          deploy-updatesite: 'releng/org.palladiosimulator.loadbalancingaction.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing
+      deploy-updatesite: 'releng/org.palladiosimulator.loadbalancingaction.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Example-Models-Package:
-    runs-on: self-hosted
     needs: [Palladio-Addon-ArchitecturalTemplates]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Example-Models-Package
-          deploy-updatesite: 'releng/org.palladiosimulator.examples.package.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Example-Models-Package
+      deploy-updatesite: 'releng/org.palladiosimulator.examples.package.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Editors-Sirius:
-    runs-on: self-hosted
     needs: [Palladio-Addon-ArchitecturalTemplates-LoadBalancing, Palladio-Example-Models-Package]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Editors-Sirius
-          deploy-updatesite: 'releng/org.palladiosimulator.editors.sirius.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Editors-Sirius
+      deploy-updatesite: 'releng/org.palladiosimulator.editors.sirius.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-EMFProfilesEditor:
-    runs-on: self-hosted
     needs: [Palladio-Editors-Sirius]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Supporting-EMFProfilesEditor
-          deploy-updatesite: 'releng/org.palladiosimulator.emfprofileseditor.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Supporting-EMFProfilesEditor
+      deploy-updatesite: 'releng/org.palladiosimulator.emfprofileseditor.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-Indirections:
-    runs-on: self-hosted
     needs: [Palladio-Editors-Sirius]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Addons-Indirections
-          deploy-updatesite: 'releng/org.palladiosimulator.indirections.updatesite/target/repository'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-Indirections
+      deploy-updatesite: 'releng/org.palladiosimulator.indirections.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Build-UpdateSite:
-    runs-on: self-hosted
     needs: [Palladio-Supporting-EMFProfilesEditor, Palladio-Addons-Indirections]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Build-UpdateSite
-          deploy-updatesite: 'target/classes/p2/final'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Build-UpdateSite
+      deploy-updatesite: 'target/classes/p2/final'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Bench-Product:
-    runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Bench-Product
-          deploy-updatesite: 'products/org.palladiosimulator.product/target/deploy'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Bench-Product
+      deploy-updatesite: 'products/org.palladiosimulator.product/target/deploy'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Build-InstallationTest-Release:
-    runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Release
-          deploy-updatesite: ''
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Release
+      deploy-updatesite: ''
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Build-InstallationTest-Nightly:
-    runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Nightly
-          deploy-updatesite: ''
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Nightly
+      deploy-updatesite: ''
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Bench-Oomph:
-    runs-on: self-hosted
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    steps:
-      - uses: PalladioSimulator/Palladio-Build-ActionsPipeline@v2
-        with:
-          use-display-output: true
-          build-repository: PalladioSimulator/Palladio-Bench-Oomph
-          deploy-updatesite: 'setups/'
-          server-ssh-key: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-          remote-host: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-          remote-port: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-          remote-user: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-          remote-target: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/action_new.yml@skipAndUpdate
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Bench-Oomph
+      deploy-updatesite: 'setups/'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}

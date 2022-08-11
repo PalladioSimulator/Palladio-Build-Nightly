@@ -9,7 +9,7 @@ jobs:
   Palladio-Analyzer-SimExp:
     needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-SimExp
@@ -24,7 +24,7 @@ jobs:
   Palladio-Supporting-Branding:
     needs: []
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Supporting-Branding
@@ -39,7 +39,7 @@ jobs:
   Palladio-Example-Models:
     needs: []
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Example-Models
@@ -54,7 +54,7 @@ jobs:
   Palladio-P2Mirror-CBIAggregator:
     needs: []
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-P2Mirror-CBIAggregator
@@ -69,7 +69,7 @@ jobs:
   Palladio-ThirdParty-Library:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ThirdParty-Library
@@ -84,7 +84,7 @@ jobs:
   Palladio-Core-Commons:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Core-Commons
@@ -99,7 +99,7 @@ jobs:
   Palladio-ThirdParty-YakinduStateCharts:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts
@@ -114,7 +114,7 @@ jobs:
   Palladio-ThirdParty-EMFProfiles:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ThirdParty-EMFProfiles
@@ -129,7 +129,7 @@ jobs:
   Palladio-Supporting-EclipseJavaDevelopmentTools:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Supporting-EclipseJavaDevelopmentTools
@@ -144,7 +144,7 @@ jobs:
   Palladio-ReverseEngineering-Java:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-Java
@@ -159,7 +159,7 @@ jobs:
   Palladio-ReverseEngineering-Docker:
     needs: [Palladio-Supporting-Branding, Palladio-Example-Models, Palladio-P2Mirror-CBIAggregator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-Docker
@@ -174,7 +174,7 @@ jobs:
   Palladio-Supporting-WorkflowEngine:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Supporting-WorkflowEngine
@@ -189,7 +189,7 @@ jobs:
   Palladio-ThirdParty-Wrapper:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ThirdParty-Wrapper
@@ -204,7 +204,7 @@ jobs:
   Palladio-Supporting-FeatureModel:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Supporting-FeatureModel
@@ -219,7 +219,7 @@ jobs:
   Palladio-QuAL-MetricSpecification:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-MetricSpecification
@@ -234,7 +234,7 @@ jobs:
   Palladio-Supporting-MDSDProfiles:
     needs: [Palladio-ThirdParty-Library, Palladio-Core-Commons, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools, Palladio-ReverseEngineering-Java, Palladio-ReverseEngineering-Docker]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Supporting-MDSDProfiles
@@ -249,7 +249,7 @@ jobs:
   Palladio-QuAL-MeasurementFramework:
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-MeasurementFramework
@@ -264,7 +264,7 @@ jobs:
   Palladio-Simulation-AbstractSimEngine:
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Simulation-AbstractSimEngine
@@ -279,7 +279,7 @@ jobs:
   Palladio-QuAL-SensorFramework:
     needs: [Palladio-Supporting-WorkflowEngine, Palladio-ThirdParty-Wrapper, Palladio-Supporting-FeatureModel, Palladio-QuAL-MetricSpecification, Palladio-Supporting-MDSDProfiles]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-SensorFramework
@@ -294,7 +294,7 @@ jobs:
   Palladio-QuAL-EDP2:
     needs: [Palladio-QuAL-MeasurementFramework, Palladio-Simulation-AbstractSimEngine, Palladio-QuAL-SensorFramework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-EDP2
@@ -309,7 +309,7 @@ jobs:
   Palladio-Core-PCM:
     needs: [Palladio-QuAL-EDP2]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Core-PCM
@@ -324,7 +324,7 @@ jobs:
   Palladio-QuAL-ProbeFramework:
     needs: [Palladio-QuAL-EDP2]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-ProbeFramework
@@ -339,7 +339,7 @@ jobs:
   Palladio-QuAL-RecorderFramework:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-RecorderFramework
@@ -354,7 +354,7 @@ jobs:
   Palladio-Editors-Commons:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Editors-Commons
@@ -369,7 +369,7 @@ jobs:
   Palladio-Simulation-Scheduler:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Simulation-Scheduler
@@ -384,7 +384,7 @@ jobs:
   Palladio-Addons-FluentApiModelGenerator:
     needs: [Palladio-Core-PCM, Palladio-QuAL-ProbeFramework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-FluentApiModelGenerator
@@ -399,7 +399,7 @@ jobs:
   Palladio-Analyzer-Framework:
     needs: [Palladio-QuAL-RecorderFramework, Palladio-Editors-Commons, Palladio-Simulation-Scheduler, Palladio-Addons-FluentApiModelGenerator]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-Framework
@@ -414,7 +414,7 @@ jobs:
   Palladio-Analyzer-Solver:
     needs: [Palladio-Analyzer-Framework]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-Solver
@@ -429,7 +429,7 @@ jobs:
   Palladio-Editors-GMF:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Editors-GMF
@@ -444,7 +444,7 @@ jobs:
   Palladio-QuAL-MonitorRepository:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-MonitorRepository
@@ -459,7 +459,7 @@ jobs:
   Palladio-ThirdParty-CloudScaleUsageEvolution:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution
@@ -474,7 +474,7 @@ jobs:
   Palladio-QuAL-ExperimentAnalysis:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-QuAL-ExperimentAnalysis
@@ -489,7 +489,7 @@ jobs:
   Palladio-Analyzer-Reliability:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-Reliability
@@ -504,7 +504,7 @@ jobs:
   Palladio-Editors-Tree:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Editors-Tree
@@ -519,7 +519,7 @@ jobs:
   Palladio-ReverseEngineering-SoMoX:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX
@@ -534,7 +534,7 @@ jobs:
   Palladio-ReverseEngineering-SoMoX-JaMoPP:
     needs: [Palladio-Analyzer-Solver]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-JaMoPP
@@ -549,7 +549,7 @@ jobs:
   Palladio-Addons-ServiceLevelObjectives:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-ServiceLevelObjectives
@@ -564,7 +564,7 @@ jobs:
   Palladio-Analyzer-SimuCom:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-SimuCom
@@ -579,7 +579,7 @@ jobs:
   Palladio-ReverseEngineering-SoMoX-RuleEngine:
     needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-RuleEngine
@@ -594,7 +594,7 @@ jobs:
   Palladio-Analyzer-ProtoCom:
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-ProtoCom
@@ -609,7 +609,7 @@ jobs:
   Palladio-Analyzer-SimuLizar:
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Analyzer-SimuLizar
@@ -624,7 +624,7 @@ jobs:
   Palladio-Addons-PerOpteryx:
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-PerOpteryx
@@ -639,7 +639,7 @@ jobs:
   Palladio-Addons-SimuComExactSchedulers:
     needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-SimuComExactSchedulers
@@ -654,7 +654,7 @@ jobs:
   Palladio-Addons-MeasurementsUI:
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-MeasurementsUI
@@ -669,7 +669,7 @@ jobs:
   Palladio-Addons-ExperimentAutomation:
     needs: [Palladio-Analyzer-ProtoCom, Palladio-Analyzer-SimuLizar, Palladio-Addons-PerOpteryx, Palladio-Addons-SimuComExactSchedulers]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-ExperimentAutomation
@@ -684,7 +684,7 @@ jobs:
   Palladio-Addon-ArchitecturalTemplates:
     needs: [Palladio-Addons-MeasurementsUI, Palladio-Addons-ExperimentAutomation]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates
@@ -699,7 +699,7 @@ jobs:
   Palladio-Addon-ArchitecturalTemplates-LoadBalancing:
     needs: [Palladio-Addon-ArchitecturalTemplates]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing
@@ -714,7 +714,7 @@ jobs:
   Palladio-Example-Models-Package:
     needs: [Palladio-Addon-ArchitecturalTemplates]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Example-Models-Package
@@ -729,7 +729,7 @@ jobs:
   Palladio-Editors-Sirius:
     needs: [Palladio-Addon-ArchitecturalTemplates-LoadBalancing, Palladio-Example-Models-Package]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Editors-Sirius
@@ -744,7 +744,7 @@ jobs:
   Palladio-Supporting-EMFProfilesEditor:
     needs: [Palladio-Editors-Sirius]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Supporting-EMFProfilesEditor
@@ -759,7 +759,7 @@ jobs:
   Palladio-Addons-Indirections:
     needs: [Palladio-Editors-Sirius]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Addons-Indirections
@@ -774,7 +774,7 @@ jobs:
   Palladio-Build-UpdateSite:
     needs: [Palladio-Supporting-EMFProfilesEditor, Palladio-Addons-Indirections]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Build-UpdateSite
@@ -789,7 +789,7 @@ jobs:
   Palladio-Bench-Product:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Bench-Product
@@ -804,7 +804,7 @@ jobs:
   Palladio-Build-InstallationTest-Release:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Release
@@ -819,7 +819,7 @@ jobs:
   Palladio-Build-InstallationTest-Nightly:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Nightly
@@ -834,7 +834,7 @@ jobs:
   Palladio-Bench-Oomph:
     needs: [Palladio-Build-UpdateSite]
     if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@v3.2
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-Bench-Oomph

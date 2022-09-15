@@ -493,7 +493,7 @@ jobs:
     with:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX
-      deploy-updatesite: 'releng/org.somox.updatesite/target/repository'
+      deploy-updatesite: 'releng/org.palladiosimulator.somox.updatesite/target/repository'
     secrets:
       SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
       REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
@@ -509,6 +509,21 @@ jobs:
       use-display-output: true
       build-repository: PalladioSimulator/Palladio-ReverseEngineering-SoMoX-JaMoPP
       deploy-updatesite: 'releng/org.somox.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+      
+  Palladio-Addons-PlantUML:
+    needs: [Palladio-Core-Commons, Palladio-Core-PCM]
+    if: success() || failure()
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-PlantUML
+      deploy-updatesite: 'releng/org.palladiosimulator.view.plantuml.updatesite/target/repository'
     secrets:
       SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
       REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}

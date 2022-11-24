@@ -830,3 +830,33 @@ jobs:
       REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
       REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+
+  Palladio-Addons-DataFlowConfidentiality-Metamodel:
+    needs: [Palladio-Core-Commons, Palladio-Core-PCM, Palladio-Editors-Commons, Palladio-Supporting-WorkflowEngine, Palladio-Addons-Indirections]
+    if: success() || failure()
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-DataFlowConfidentiality-Metamodel
+      deploy-updatesite: 'releng/org.palladiosimulator.dataflow.metamodel.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+
+  Palladio-Addons-DataFlowConfidentiality-Analysis:
+    needs: [Palladio-Core-Commons, Palladio-Core-PCM, Palladio-Editors-Commons, Palladio-Supporting-WorkflowEngine, Palladio-Addons-DataFlowConfidentiality-Metamodel]
+    if: success() || failure()
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
+    with:
+      use-display-output: true
+      build-repository: PalladioSimulator/Palladio-Addons-DataFlowConfidentiality-Analysis
+      deploy-updatesite: 'releng/org.palladiosimulator.dataflow.confidentiality.pcm.analysis.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}

@@ -837,6 +837,7 @@ jobs:
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
       use-display-output: true
+      java-version: 17
       build-repository: PalladioSimulator/Palladio-Addons-DataFlowConfidentiality-Metamodel
       deploy-updatesite: 'releng/org.palladiosimulator.dataflow.metamodel.updatesite/target/repository'
     secrets:
@@ -852,6 +853,7 @@ jobs:
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
       use-display-output: true
+      java-version: 17
       build-repository: PalladioSimulator/Palladio-Addons-DataFlowConfidentiality-Analysis
       deploy-updatesite: 'releng/org.palladiosimulator.dataflow.confidentiality.pcm.analysis.updatesite/target/repository'
     secrets:

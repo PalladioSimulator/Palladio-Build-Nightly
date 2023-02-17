@@ -7,7 +7,7 @@ on:
 
 jobs:
   Palladio-Analyzer-SimExp:
-    needs: [Palladio-QuAL-SensorFramework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
+    needs: [Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:

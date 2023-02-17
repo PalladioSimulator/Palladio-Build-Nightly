@@ -109,7 +109,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-WorkflowEngine:
-    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools]
+    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -126,7 +126,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-ThirdParty-Wrapper:
-    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools]
+    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -143,7 +143,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-FeatureModel:
-    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools]
+    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -160,7 +160,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-QuAL-MetricSpecification:
-    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools]
+    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -177,7 +177,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Supporting-MDSDProfiles:
-    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles, Palladio-Supporting-EclipseJavaDevelopmentTools]
+    needs: [Palladio-ThirdParty-Library, Palladio-ThirdParty-YakinduStateCharts, Palladio-ThirdParty-EMFProfiles]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -483,7 +483,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-ServiceLevelObjectives:
-    needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
+    needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -500,7 +500,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-SimuCom:
-    needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree, Palladio-ReverseEngineering-SoMoX, Palladio-ReverseEngineering-SoMoX-JaMoPP]
+    needs: [Palladio-Editors-GMF, Palladio-QuAL-MonitorRepository, Palladio-ThirdParty-CloudScaleUsageEvolution, Palladio-QuAL-ExperimentAnalysis, Palladio-Analyzer-Reliability, Palladio-Editors-Tree]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -517,7 +517,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-ProtoCom:
-    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -534,7 +534,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Analyzer-SimuLizar:
-    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -551,7 +551,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-PerOpteryx:
-    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:
@@ -568,7 +568,7 @@ jobs:
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
 
   Palladio-Addons-SimuComExactSchedulers:
-    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom, Palladio-ReverseEngineering-SoMoX-RuleEngine]
+    needs: [Palladio-Addons-ServiceLevelObjectives, Palladio-Analyzer-SimuCom]
     if: success() || failure()
     uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
     with:

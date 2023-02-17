@@ -6,23 +6,6 @@ on:
   - cron: "0 0 * * *" 
 
 jobs:
-  Palladio-Analyzer-SimExp:
-    needs: [Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler]
-    if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
-    with:
-      use-display-output: true
-      runner-label: ubuntu-latest
-      no-caching: true
-      build-repository: PalladioSimulator/Palladio-Analyzer-SimExp
-      deploy-updatesite: 'releng/org.palladiosimulator.simexp.updatesite/target/repository'
-    secrets:
-      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
   Palladio-Supporting-Branding:
     needs: []
     if: success() || failure()

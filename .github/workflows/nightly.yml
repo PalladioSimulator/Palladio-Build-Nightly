@@ -785,33 +785,3 @@ jobs:
       REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
       REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
       REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
-  Palladio-Build-InstallationTest-Release:
-    needs: [Palladio-Build-UpdateSite]
-    if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
-    with:
-      use-display-output: true
-      build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Release
-      deploy-updatesite: ''
-    secrets:
-      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
-
-  Palladio-Build-InstallationTest-Nightly:
-    needs: [Palladio-Build-UpdateSite]
-    if: success() || failure()
-    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
-    with:
-      use-display-output: true
-      build-repository: PalladioSimulator/Palladio-Build-InstallationTest-Nightly
-      deploy-updatesite: ''
-    secrets:
-      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
-      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
-      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
-      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
-      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}

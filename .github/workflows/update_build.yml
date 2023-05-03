@@ -2,6 +2,9 @@ name: Auto-Update Nightly Build
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "autogenerate"
 
 jobs:
   calculateDependencies:

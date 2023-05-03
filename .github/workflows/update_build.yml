@@ -1,0 +1,30 @@
+name: Auto-Update Nightly Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  calculateDependencies:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_OAUTH: ${{ github.token }}
+    outputs:
+      dependencies: ${{ steps.dependencyTool.outputs.DEPENDENCIES }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: 'https://github.com/PalladioSimulator/Palladio-Build-DependencyTool'
+          ref: 'patch'
+      - name: Set up JDK
+        uses: actions/setup-java@v3.11.0
+        with:
+          distribution: 'temurin'
+          java-version: 11
+      - name: Build Palladio-Build-DependencyTool
+        run: mvn -DskipTests clean package
+      - name: Run Palladio-Build-DependencyTool
+        id: dependencyTool
+        run: echo "DEPENDENCIES=$(java -jar target/deploy/dependencytool.jar -ri Palladio-Build-UpdateSite -ii -us 'https://updatesite.palladio-simulator.com/' -j -o dependencies PalladioSimulator)" >> "$GITHUB_OUTPUT"
+
+

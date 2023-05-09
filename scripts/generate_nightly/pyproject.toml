@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "generate-nightly"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Alber <lucasd.alber@gmail.com>"]
+readme = "README.md"
+packages = [{include = "generate_nightly"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyyaml = "^6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,3 @@
+${{ repo_name_short }}:
+  needs: ${{ deps_short }}
+  run: echo ${{ repo_name_short }}

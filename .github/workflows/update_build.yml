@@ -30,4 +30,29 @@ jobs:
         id: dependencyTool
         run: echo "DEPENDENCIES=$(java -jar target/deploy/dependencytool.jar -ri Palladio-Build-UpdateSite -ii -us 'https://updatesite.palladio-simulator.com/' -j -o dependencies PalladioSimulator)" >> "$GITHUB_OUTPUT"
 
-
+  generateNightlyBuild:
+    runs-on: ubuntu-latest
+    needs: calculateDependencies
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install poetry
+        run: pipx install poetry
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+          cache: 'poetry'
+      - name: Install dependencies
+        run: poetry install -C scripts/generate_nightly
+      - name: Generate nightly.yml
+        run: poetry run -C scripts/generate_nightly python -m generate_nightly
+        env:
+          DEPENDENCIES: ${{ needs.calculateDependencies.outputs.dependencies }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "auto-update nightly build"
+          title: "auto-update nightly build"
+          labels: auto-update
+          branch: chore/update-build

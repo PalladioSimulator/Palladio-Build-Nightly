@@ -24,4 +24,6 @@ The build can be configured by changing the templates in the `/template` folder.
 
 | Variable | Type | Description |
 |----------|------|-------------|
-| `${{ repo_name }}` | string | The full name of the repository in the form `User/Reponame`. |
+| `${{ repo_name }}` | string | The full name of the repository in the form `Username/Reponame`. |
+| `${{ repo_name_short }}` | string | The name of the repository in the form `Reponame` (without the username). |
+| `${{ deps_short }}` | array | The build dependencies. An array of short repository names. |

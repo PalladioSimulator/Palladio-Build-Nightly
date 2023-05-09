@@ -1,0 +1,9 @@
+name: Nightly Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "autogenerate"
+
+jobs: ${{ jobs }}

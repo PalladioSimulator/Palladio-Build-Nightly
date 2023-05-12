@@ -1,3 +1,13 @@
 ${{ repo_name_short }}:
   needs: ${{ deps_short }}
-  run: echo ${{ repo_name_short }}
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+      run: python scripts/dispatch_workflow.py ${{ repo_owner }} ${{ repo_name_short }} build.yaml

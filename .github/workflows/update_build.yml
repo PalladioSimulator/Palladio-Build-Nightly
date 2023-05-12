@@ -10,7 +10,7 @@ jobs:
   calculateDependencies:
     runs-on: ubuntu-latest
     env:
-      GITHUB_OAUTH: ${{ github.token }}
+      GITHUB_OAUTH: ${{ secrets.github_token }}
     outputs:
       dependencies: ${{ steps.dependencyTool.outputs.DEPENDENCIES }}
     steps:

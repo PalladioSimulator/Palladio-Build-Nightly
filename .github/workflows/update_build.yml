@@ -57,3 +57,4 @@ jobs:
           title: "auto-update nightly build"
           labels: auto-update
           branch: chore/update-build
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>

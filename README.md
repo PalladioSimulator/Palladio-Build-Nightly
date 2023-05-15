@@ -1,6 +1,6 @@
 # Palladio-Build-Nightly
 
-This repository contains two workflows. `update_build.yml` runs a dependency tool to generate `nightly.yml` which contains the build jobs for the nightly build in the Palladio organization. The jobs no not actually build the project but trigger the workflows on the corresponding repo instead.
+This repository contains two workflows. `update_build.yml` runs a dependency tool to generate `nightly.yml` which contains the build jobs for the nightly build in the Palladio organization. The jobs do not actually build the project but trigger the workflows on the corresponding repo instead.
 
 - `update_build.yml`
 

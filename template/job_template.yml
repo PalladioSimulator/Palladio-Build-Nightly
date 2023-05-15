@@ -12,4 +12,5 @@ ${{ repo_name_short }}:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: ${{ deps_json }}
       run: python scripts/dispatch_workflow.py ${{ repo_owner }} ${{ repo_name_short }} build.yaml

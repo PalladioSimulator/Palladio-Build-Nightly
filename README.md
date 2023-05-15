@@ -9,6 +9,12 @@ This repository contains two workflows. `update_build.yml` runs a dependency too
 
 - `nightly.yml`
 
+    + Executes the workflow on the corresponding repositories and reports their outcome.
+    + The workflows are only executed if:
+        * No workflow was run on the repository.
+        * There was a commit since the last workflow run.
+        * There was a workflow run on a dependency since the last workflow run.
+
 
 ## Configuration
 
@@ -28,3 +34,4 @@ The build can be configured by changing the templates in the `/template` folder.
 | `${{ repo_name_short }}` | string | The name of the repository in the form `Reponame` (without the owner). |
 | `${{ deps_short }}` | array | The build dependencies. An array of short repository names. |
 | `${{ repo_owner }}` | string | The name of the owner. |
+| `${{ deps_json }}` | string | The build dependencies as JSON array. | 

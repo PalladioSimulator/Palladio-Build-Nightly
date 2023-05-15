@@ -14,7 +14,7 @@ This repository contains two workflows. `update_build.yml` runs a dependency too
     + The workflows are only executed if:
         * No workflow was run on the repository.
         * There was a commit since the last workflow run.
-        * There was a workflow run on a dependency since the last workflow run.
+        * There was a successful workflow run on a dependency since the last workflow run. Only the last 30 workflow runs are checked.
 
 
 ## Configuration

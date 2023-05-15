@@ -6,6 +6,54 @@ on:
   - cron: "0 0 * * *" 
 
 jobs:
+  Palladio-Addons-FailureScenario:
+    needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
+    if: success() || failure()
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
+    with:
+      use-display-output: true
+      runner-label: ubuntu-latest
+      build-repository: PalladioSimulator/Palladio-Addons-FailureScenario
+      deploy-updatesite: 'releng/org.palladiosimulator.failuremodel.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+
+  Palladio-Addons-EnvironmentalDynamics:
+    needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
+    if: success() || failure()
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
+    with:
+      use-display-output: true
+      runner-label: ubuntu-latest
+      build-repository: PalladioSimulator/Palladio-Addons-EnvironmentalDynamics
+      deploy-updatesite: 'releng/org.palladiosimulator.envdyn.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+
+  Palladio-Analyzer-Dependability-ML:
+    needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
+    if: success() || failure()
+    uses: PalladioSimulator/Palladio-Build-ActionsPipeline/.github/workflows/build.yml@master
+    with:
+      use-display-output: true
+      runner-label: ubuntu-latest
+      build-repository: PalladioSimulator/Palladio-Analyzer-Dependability-ML
+      deploy-updatesite: 'releng/org.palladiosimulator.dependability.ml.updatesite/target/repository'
+    secrets:
+      SERVER_SSH_KEY: ${{ secrets.DEPLOYMENT_SERVER_SSH_KEY }}
+      REMOTE_HOST: ${{ secrets.DEPLOYMENT_REMOTE_HOST }}
+      REMOTE_PORT: ${{ secrets.DEPLOYMENT_REMOTE_PORT }}
+      REMOTE_USER: ${{ secrets.DEPLOYMENT_REMOTE_USER }}
+      REMOTE_TARGET: ${{ secrets.DEPLOYMENT_REMOTE_TARGET }}
+
   Palladio-Analyzer-SimExp:
     needs: [Palladio-QuAL-SensorFramework, Palladio-Analyzer-Framework, Palladio-QuAL-MeasurementFramework, Palladio-Addons-ExperimentAutomation, Palladio-Simulation-Scheduler, Palladio-QuAL-RecorderFramework]
     if: success() || failure()

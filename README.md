@@ -6,6 +6,7 @@ This repository contains two workflows. `update_build.yml` runs a dependency too
 
     + Runs [Palladio-Build-DependencyTool](https://github.com/PalladioSimulator/Palladio-Build-DependencyTool) to determine the repositories that need to be build and the dependencies between them.
     + Generates `nightly.yml` which contains the jobs that trigger the workflows on the repositories.
+    + Caution: The dependency tool generates a lot (near 1000) API calls and can therefore be only run once per hour when using the GitHub provided token which has a rate limit of 1000 API calls/hour.
 
 - `nightly.yml`
 

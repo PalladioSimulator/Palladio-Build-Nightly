@@ -18,7 +18,8 @@ def main():
 
     job_template = Template(PATH_JOB_TEMPLATE)
     jobs = {}
-    for repo_name, dependencies in repo_dependencies.items():
+    for repo_name, dependencies in sorted(repo_dependencies.items()):
+        dependencies.sort()
         variables = {
             "repo_name": repo_name,
             "repo_name_short": repo_name.split("/")[1],

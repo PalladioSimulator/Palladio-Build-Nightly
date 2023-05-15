@@ -23,13 +23,13 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-TextBasedModelGenerator
-        build.yaml
+        build.yml
   Palladio-QuAL-MeasurementFramework:
     needs:
     - Palladio-ThirdParty-Wrapper
+    - Palladio-QuAL-MetricSpecification
     - Palladio-Core-Commons
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -42,17 +42,17 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-MetricSpecification"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-MeasurementFramework
-        build.yaml
+        build.yml
   Palladio-Addons-FailureScenario:
     needs:
     - Palladio-Editors-Tree
     - Palladio-Analyzer-SimuCom
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Analyzer-SimuLizar
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -67,19 +67,19 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Editors-Tree", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Analyzer-SimuLizar"]'
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Analyzer-SimuLizar"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-FailureScenario
-        build.yaml
+        build.yml
   Palladio-QuAL-ExperimentAnalysis:
     needs:
     - Palladio-ThirdParty-Wrapper
+    - Palladio-QuAL-MetricSpecification
     - Palladio-Core-Commons
     - Palladio-QuAL-MeasurementFramework
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
     - Palladio-QuAL-RecorderFramework
+    - Palladio-QuAL-EDP2
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -92,12 +92,12 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
+          "PalladioSimulator/Palladio-QuAL-EDP2"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-ExperimentAnalysis
-        build.yaml
+        build.yml
   Palladio-ThirdParty-YakinduStateCharts:
     needs: []
     if: success() || failure()
@@ -114,26 +114,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '[]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-YakinduStateCharts
-        build.yaml
-  Palladio-Addons-EnvironmentalDynamics:
-    needs:
-    - Palladio-ThirdParty-EMFProfiles
-    - Palladio-Supporting-MDSDProfiles
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-EnvironmentalDynamics
-        build.yaml
+        build.yml
   Palladio-Supporting-MDSDProfiles:
     needs:
     - Palladio-ThirdParty-EMFProfiles
@@ -154,7 +135,26 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Core-Commons",
           "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-MDSDProfiles
-        build.yaml
+        build.yml
+  Palladio-Addons-EnvironmentalDynamics:
+    needs:
+    - Palladio-ThirdParty-EMFProfiles
+    - Palladio-Supporting-MDSDProfiles
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-EnvironmentalDynamics
+        build.yml
   Palladio-Addons-PlantUML:
     needs:
     - Palladio-Core-Commons
@@ -173,21 +173,21 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-PlantUML
-        build.yaml
+        build.yml
   Palladio-Analyzer-ProtoCom:
     needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Analyzer-SimuCom
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
     - Palladio-ThirdParty-Library
-    - Palladio-Supporting-MDSDProfiles
     - Palladio-QuAL-SensorFramework
+    - Palladio-Analyzer-Framework
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -200,21 +200,21 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
-          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-ProtoCom
-        build.yaml
+        build.yml
   Palladio-Editors-Tree:
     needs:
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
-    - Palladio-Core-PCM
-    - Palladio-Supporting-Branding
     - Palladio-QuAL-MetricSpecification
+    - Palladio-Core-PCM
+    - Palladio-Editors-Commons
+    - Palladio-Supporting-Branding
     - Palladio-QuAL-EDP2
     - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
@@ -229,17 +229,17 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-Tree
-        build.yaml
+        build.yml
   Palladio-ThirdParty-CloudScaleUsageEvolution:
     needs:
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -252,20 +252,20 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Core-PCM"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Editors-Commons"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-CloudScaleUsageEvolution
-        build.yaml
+        build.yml
   Palladio-QuAL-RecorderFramework:
     needs:
     - Palladio-ThirdParty-Wrapper
+    - Palladio-QuAL-MetricSpecification
     - Palladio-Core-Commons
+    - Palladio-QuAL-ProbeFramework
     - Palladio-QuAL-MeasurementFramework
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-SensorFramework
-    - Palladio-QuAL-ProbeFramework
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -278,20 +278,20 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-QuAL-ProbeFramework"]'
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-SensorFramework"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-RecorderFramework
-        build.yaml
+        build.yml
   Palladio-Addons-DataFlowConfidentiality-Metamodel:
     needs:
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Core-Commons
+    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Editors-Commons
     - Palladio-Core-PCM
-    - Palladio-Editors-Sirius
     - Palladio-Addons-Indirections
+    - Palladio-Editors-Sirius
     - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -305,12 +305,12 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Core-Commons",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Sirius", "PalladioSimulator/Palladio-Addons-Indirections",
+          "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Editors-Sirius",
           "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-DataFlowConfidentiality-Metamodel
-        build.yaml
+        build.yml
   Palladio-ThirdParty-Wrapper:
     needs:
     - Palladio-Supporting-Branding
@@ -328,7 +328,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-Wrapper
-        build.yaml
+        build.yml
   Palladio-Simulation-AbstractSimEngine:
     needs:
     - Palladio-ThirdParty-Wrapper
@@ -349,13 +349,13 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Supporting-Branding",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Simulation-AbstractSimEngine
-        build.yaml
+        build.yml
   Palladio-Analyzer-Framework:
     needs:
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-Supporting-WorkflowEngine
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
     - Palladio-Supporting-FeatureModel
     if: success() || failure()
@@ -370,11 +370,11 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-FeatureModel"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Framework
-        build.yaml
+        build.yml
   Palladio-ThirdParty-Library:
     needs: []
     if: success() || failure()
@@ -391,7 +391,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '[]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-Library
-        build.yaml
+        build.yml
   Palladio-Core-Commons:
     needs:
     - Palladio-Supporting-Branding
@@ -409,7 +409,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Core-Commons
-        build.yaml
+        build.yml
   Palladio-Example-Models-Package:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
@@ -429,23 +429,23 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
           "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Example-Models-Package
-        build.yaml
+        build.yml
   Palladio-Analyzer-Dependability-ML:
     needs:
-    - Palladio-Analyzer-Framework
     - Palladio-Addon-ArchitecturalTemplates
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Analyzer-SimuCom
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-ThirdParty-EMFProfiles
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
-    - Palladio-Supporting-MDSDProfiles
+    - Palladio-Analyzer-Framework
+    - Palladio-Analyzer-Reliability
     - Palladio-Addons-ExperimentAutomation
     - Palladio-Core-Commons
     - Palladio-ThirdParty-Wrapper
-    - Palladio-Editors-Commons
-    - Palladio-Addons-EnvironmentalDynamics
-    - Palladio-Analyzer-Reliability
     - Palladio-Analyzer-Solver
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Addons-EnvironmentalDynamics
+    - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -458,15 +458,16 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
-          "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics",
-          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-Analyzer-Solver"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
+          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-Reliability",
+          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Analyzer-Solver",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics",
+          "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Dependability-ML
-        build.yaml
+        build.yml
   Palladio-Editors-GMF:
     needs:
     - Palladio-Core-Commons
@@ -488,7 +489,7 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-GMF
-        build.yaml
+        build.yml
   Palladio-QuAL-MetricSpecification:
     needs:
     - Palladio-Core-Commons
@@ -509,26 +510,26 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
           "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-MetricSpecification
-        build.yaml
+        build.yml
   Palladio-Analyzer-SimExp:
     needs:
-    - Palladio-Analyzer-Framework
     - Palladio-Analyzer-SimuCom
-    - Palladio-Supporting-WorkflowEngine
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
     - Palladio-Addons-FailureScenario
     - Palladio-Simulation-Scheduler
+    - Palladio-Analyzer-SimuLizar
+    - Palladio-Analyzer-Framework
+    - Palladio-QuAL-EDP2
     - Palladio-Addons-ExperimentAutomation
     - Palladio-QuAL-MonitorRepository
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Addons-EnvironmentalDynamics
-    - Palladio-Analyzer-Solver
-    - Palladio-Analyzer-Dependability-ML
-    - Palladio-Analyzer-SimuLizar
     - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
+    - Palladio-Analyzer-Solver
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Analyzer-Dependability-ML
+    - Palladio-Addons-EnvironmentalDynamics
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -541,29 +542,57 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Addons-FailureScenario",
-          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics",
-          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Analyzer-Dependability-ML",
-          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-EDP2"]'
+          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-QuAL-EDP2",
+          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-Analyzer-Solver",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Analyzer-Dependability-ML",
+          "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-SimExp
-        build.yaml
+        build.yml
+  Palladio-Addons-SimuComExactSchedulers:
+    needs:
+    - Palladio-Analyzer-SimuCom
+    - Palladio-Core-Commons
+    - Palladio-QuAL-ProbeFramework
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Core-PCM
+    - Palladio-Supporting-Branding
+    - Palladio-Simulation-Scheduler
+    - Palladio-Simulation-AbstractSimEngine
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-SimuComExactSchedulers
+        build.yml
   Palladio-Addons-ParallelPerformanceCatalogue:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
-    - Palladio-Analyzer-Framework
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Analyzer-SimuCom
-    - Palladio-Simulation-AbstractSimEngine
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
+    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Core-PCM
-    - Palladio-Analyzer-SimuLizar
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
+    - Palladio-Simulation-AbstractSimEngine
+    - Palladio-Analyzer-SimuLizar
+    - Palladio-Analyzer-Framework
     - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -578,51 +607,23 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
-          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
+          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ParallelPerformanceCatalogue
-        build.yaml
-  Palladio-Addons-SimuComExactSchedulers:
-    needs:
-    - Palladio-Analyzer-SimuCom
-    - Palladio-Simulation-AbstractSimEngine
-    - Palladio-Core-Commons
-    - Palladio-Supporting-WorkflowEngine
-    - Palladio-Core-PCM
-    - Palladio-Supporting-Branding
-    - Palladio-Simulation-Scheduler
-    - Palladio-QuAL-ProbeFramework
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-QuAL-ProbeFramework"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-SimuComExactSchedulers
-        build.yaml
+        build.yml
   Palladio-Addons-ServiceLevelObjectives:
     needs:
     - Palladio-QuAL-MonitorRepository
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
+    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MeasurementFramework
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-EDP2
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -637,19 +638,19 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Supporting-Branding",
           "PalladioSimulator/Palladio-QuAL-EDP2"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ServiceLevelObjectives
-        build.yaml
+        build.yml
   Palladio-QuAL-EDP2:
     needs:
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
+    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MeasurementFramework
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -663,19 +664,19 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification"]'
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
+          "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-EDP2
-        build.yaml
+        build.yml
   Palladio-QuAL-MonitorRepository:
     needs:
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
+    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MeasurementFramework
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-EDP2
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -690,19 +691,19 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2"]'
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-EDP2"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-MonitorRepository
-        build.yaml
+        build.yml
   Palladio-Addons-IntBIIS:
     needs:
-    - Palladio-Analyzer-Framework
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-Supporting-WorkflowEngine
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
+    - Palladio-Analyzer-Framework
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -715,22 +716,22 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Analyzer-Framework"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-IntBIIS
-        build.yaml
+        build.yml
   Palladio-Editors-Sirius:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
+    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
+    - Palladio-Example-Models-Package
     - Palladio-ThirdParty-YakinduStateCharts
     - Palladio-Supporting-MDSDProfiles
-    - Palladio-Example-Models-Package
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -744,27 +745,27 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
-          "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-Example-Models-Package"]'
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Example-Models-Package",
+          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-Sirius
-        build.yaml
+        build.yml
   Palladio-Addon-ArchitecturalTemplates:
     needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Analyzer-SimuCom
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-ThirdParty-EMFProfiles
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
-    - Palladio-Supporting-MDSDProfiles
-    - Palladio-Addons-ServiceLevelObjectives
+    - Palladio-Analyzer-SimuLizar
+    - Palladio-Analyzer-Framework
     - Palladio-Addons-ExperimentAutomation
     - Palladio-QuAL-MonitorRepository
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
-    - Palladio-Analyzer-SimuLizar
+    - Palladio-Addons-ServiceLevelObjectives
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -777,23 +778,48 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Analyzer-SimuLizar"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addon-ArchitecturalTemplates
-        build.yaml
+        build.yml
+  Palladio-QuAL-ProbeFramework:
+    needs:
+    - Palladio-ThirdParty-Wrapper
+    - Palladio-QuAL-MetricSpecification
+    - Palladio-Core-Commons
+    - Palladio-QuAL-MeasurementFramework
+    - Palladio-Supporting-Branding
+    - Palladio-QuAL-EDP2
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-EDP2"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-ProbeFramework
+        build.yml
   Palladio-ReverseEngineering-SoMoX-RuleEngine:
     needs:
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Addons-FluentApiModelGenerator
     - Palladio-Supporting-WorkflowEngine
     - Palladio-Core-PCM
     - Palladio-ThirdParty-Library
+    - Palladio-Addons-FluentApiModelGenerator
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -807,41 +833,16 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ThirdParty-Library"]'
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-SoMoX-RuleEngine
-        build.yaml
-  Palladio-QuAL-ProbeFramework:
-    needs:
-    - Palladio-ThirdParty-Wrapper
-    - Palladio-Core-Commons
-    - Palladio-QuAL-MeasurementFramework
-    - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-ProbeFramework
-        build.yaml
+        build.yml
   Palladio-Simulation-Scheduler:
     needs:
-    - Palladio-Simulation-AbstractSimEngine
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
+    - Palladio-Simulation-AbstractSimEngine
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -854,20 +855,19 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Simulation-Scheduler
-        build.yaml
+        build.yml
   Palladio-Analyzer-Solver:
     needs:
-    - Palladio-Analyzer-Framework
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-ThirdParty-Wrapper
     - Palladio-Supporting-WorkflowEngine
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
+    - Palladio-Analyzer-Framework
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -880,23 +880,23 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-Analyzer-Framework"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Solver
-        build.yaml
+        build.yml
   Palladio-Addons-MeasurementsUI:
     needs:
-    - Palladio-Analyzer-Framework
     - Palladio-QuAL-MonitorRepository
-    - Palladio-Editors-Commons
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Addons-ServiceLevelObjectives
     - Palladio-QuAL-MeasurementFramework
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     - Palladio-Analyzer-SimuLizar
+    - Palladio-Analyzer-Framework
     - Palladio-QuAL-EDP2
-    - Palladio-Addons-ServiceLevelObjectives
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -909,26 +909,26 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-QuAL-EDP2"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-MeasurementsUI
-        build.yaml
+        build.yml
   Palladio-Analyzer-Reliability:
     needs:
-    - Palladio-Analyzer-Framework
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-QuAL-ProbeFramework
+    - Palladio-QuAL-MetricSpecification
     - Palladio-Analyzer-Solver
+    - Palladio-Supporting-WorkflowEngine
     - Palladio-QuAL-MeasurementFramework
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-ProbeFramework
+    - Palladio-Analyzer-Framework
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -941,40 +941,40 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Analyzer-Solver",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-ProbeFramework"]'
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-Analyzer-Framework"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Reliability
-        build.yaml
+        build.yml
   Palladio-Addons-Indirections:
     needs:
     - Palladio-ThirdParty-EMFProfiles
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
-    - Palladio-Addons-ServiceLevelObjectives
-    - Palladio-QuAL-ProbeFramework
+    - Palladio-QuAL-EDP2
+    - Palladio-Analyzer-Reliability
     - Palladio-QuAL-MonitorRepository
     - Palladio-ThirdParty-Wrapper
-    - Palladio-Editors-Commons
-    - Palladio-Analyzer-Reliability
-    - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ThirdParty-CloudScaleUsageEvolution
-    - Palladio-QuAL-RecorderFramework
-    - Palladio-Analyzer-Framework
-    - Palladio-Analyzer-SimuCom
+    - Palladio-QuAL-MeasurementFramework
     - Palladio-Simulation-AbstractSimEngine
+    - Palladio-QuAL-RecorderFramework
+    - Palladio-Analyzer-SimuCom
+    - Palladio-QuAL-ProbeFramework
     - Palladio-Core-PCM
+    - Palladio-ThirdParty-CloudScaleUsageEvolution
+    - Palladio-QuAL-ExperimentAnalysis
     - Palladio-Simulation-Scheduler
     - Palladio-Editors-Sirius
-    - Palladio-Supporting-MDSDProfiles
-    - Palladio-QuAL-ExperimentAnalysis
-    - Palladio-Core-Commons
     - Palladio-Analyzer-SimuLizar
-    - Palladio-QuAL-EDP2
+    - Palladio-Analyzer-Framework
+    - Palladio-Core-Commons
+    - Palladio-Addons-ServiceLevelObjectives
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -987,25 +987,25 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-Analyzer-Framework",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Simulation-Scheduler",
-          "PalladioSimulator/Palladio-Editors-Sirius", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
-          "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-QuAL-EDP2"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-EDP2",
+          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
+          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis",
+          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Editors-Sirius",
+          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-Indirections
-        build.yaml
+        build.yml
   Palladio-ReverseEngineering-SoMoX-SEFF:
     needs:
-    - Palladio-Addons-FluentApiModelGenerator
     - Palladio-Supporting-WorkflowEngine
     - Palladio-Core-PCM
+    - Palladio-Addons-FluentApiModelGenerator
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1018,10 +1018,10 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-SoMoX-SEFF
-        build.yaml
+        build.yml
   Palladio-Supporting-EclipseJavaDevelopmentTools:
     needs: []
     if: success() || failure()
@@ -1038,7 +1038,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '[]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-EclipseJavaDevelopmentTools
-        build.yaml
+        build.yml
   Palladio-Supporting-EMFProfilesEditor:
     needs:
     - Palladio-ThirdParty-EMFProfiles
@@ -1056,7 +1056,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-EMFProfilesEditor
-        build.yaml
+        build.yml
   Palladio-QuAL-SensorFramework:
     needs:
     - Palladio-Core-Commons
@@ -1077,13 +1077,13 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
           "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-SensorFramework
-        build.yaml
+        build.yml
   Palladio-ReverseEngineering-SoMoX-JaMoPP:
     needs:
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-Supporting-WorkflowEngine
     - Palladio-Supporting-EclipseJavaDevelopmentTools
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1097,28 +1097,11 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Supporting-EclipseJavaDevelopmentTools",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Supporting-EclipseJavaDevelopmentTools", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-Core-PCM"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-SoMoX-JaMoPP
-        build.yaml
-  Palladio-ThirdParty-EMFProfiles:
-    needs: []
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '[]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-EMFProfiles
-        build.yaml
+        build.yml
   Palladio-Supporting-Branding:
     needs: []
     if: success() || failure()
@@ -1135,7 +1118,24 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '[]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-Branding
-        build.yaml
+        build.yml
+  Palladio-ThirdParty-EMFProfiles:
+    needs: []
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '[]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-EMFProfiles
+        build.yml
   Palladio-Supporting-WorkflowEngine:
     needs:
     - Palladio-Core-Commons
@@ -1154,18 +1154,18 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-WorkflowEngine
-        build.yaml
+        build.yml
   Palladio-Addon-ArchitecturalTemplates-LoadBalancing:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
-    - Palladio-Analyzer-Framework
     - Palladio-Analyzer-SimuCom
-    - Palladio-Simulation-AbstractSimEngine
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
     - Palladio-Core-PCM
-    - Palladio-Analyzer-SimuLizar
+    - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
+    - Palladio-Simulation-AbstractSimEngine
+    - Palladio-Analyzer-SimuLizar
+    - Palladio-Analyzer-Framework
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1179,31 +1179,31 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
-          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Supporting-Branding"]'
+          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
+          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Framework"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addon-ArchitecturalTemplates-LoadBalancing
-        build.yaml
+        build.yml
   Palladio-Analyzer-SimuCom:
     needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-Simulation-AbstractSimEngine
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-QuAL-ProbeFramework
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
     - Palladio-Simulation-Scheduler
     - Palladio-ThirdParty-Library
     - Palladio-Supporting-FeatureModel
+    - Palladio-Analyzer-Framework
+    - Palladio-QuAL-EDP2
     - Palladio-QuAL-SensorFramework
-    - Palladio-QuAL-ProbeFramework
+    - Palladio-Analyzer-Reliability
     - Palladio-Core-Commons
     - Palladio-ThirdParty-Wrapper
-    - Palladio-Editors-Commons
-    - Palladio-Analyzer-Reliability
-    - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
+    - Palladio-QuAL-MeasurementFramework
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Simulation-AbstractSimEngine
     - Palladio-QuAL-RecorderFramework
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1217,17 +1217,17 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Simulation-Scheduler",
-          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-Supporting-FeatureModel",
-          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Analyzer-Reliability",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-SensorFramework",
+          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-SimuCom
-        build.yaml
+        build.yml
   Palladio-Addons-FluentApiModelGenerator:
     needs:
     - Palladio-Core-Commons
@@ -1246,71 +1246,75 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-FluentApiModelGenerator
-        build.yaml
-  Palladio-Addons-ExperimentAutomation:
-    needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-Analyzer-SimuCom
-    - Palladio-Supporting-WorkflowEngine
-    - Palladio-Core-PCM
-    - Palladio-Supporting-Branding
-    - Palladio-Addons-ServiceLevelObjectives
-    - Palladio-QuAL-MonitorRepository
-    - Palladio-Core-Commons
-    - Palladio-Editors-Commons
-    - Palladio-ThirdParty-Wrapper
-    - Palladio-QuAL-MeasurementFramework
-    - Palladio-Analyzer-SimuLizar
-    - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
-    - Palladio-ThirdParty-CloudScaleUsageEvolution
-    - Palladio-QuAL-RecorderFramework
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ExperimentAutomation
-        build.yaml
+        build.yml
   Palladio-Analyzer-SimuLizar:
     needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Analyzer-SimuCom
-    - Palladio-Simulation-AbstractSimEngine
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-ThirdParty-EMFProfiles
+    - Palladio-QuAL-ProbeFramework
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
+    - Palladio-ThirdParty-CloudScaleUsageEvolution
+    - Palladio-QuAL-ExperimentAnalysis
     - Palladio-Simulation-Scheduler
     - Palladio-ThirdParty-Library
     - Palladio-Supporting-FeatureModel
-    - Palladio-Supporting-MDSDProfiles
-    - Palladio-Addons-ServiceLevelObjectives
-    - Palladio-QuAL-ProbeFramework
+    - Palladio-Analyzer-Framework
+    - Palladio-QuAL-EDP2
     - Palladio-QuAL-MonitorRepository
-    - Palladio-QuAL-ExperimentAnalysis
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
-    - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
+    - Palladio-Addons-ServiceLevelObjectives
+    - Palladio-QuAL-MeasurementFramework
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Simulation-AbstractSimEngine
+    - Palladio-QuAL-RecorderFramework
+    - Palladio-Supporting-MDSDProfiles
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis",
+          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
+          "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-SimuLizar
+        build.yml
+  Palladio-Addons-ExperimentAutomation:
+    needs:
+    - Palladio-Analyzer-SimuCom
+    - Palladio-Editors-Commons
+    - Palladio-Core-PCM
+    - Palladio-Supporting-Branding
     - Palladio-ThirdParty-CloudScaleUsageEvolution
+    - Palladio-Analyzer-SimuLizar
+    - Palladio-QuAL-EDP2
+    - Palladio-Analyzer-Framework
+    - Palladio-QuAL-MonitorRepository
+    - Palladio-Core-Commons
+    - Palladio-Addons-ServiceLevelObjectives
+    - Palladio-QuAL-MetricSpecification
+    - Palladio-ThirdParty-Wrapper
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-RecorderFramework
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1324,20 +1328,16 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Simulation-Scheduler",
-          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-Supporting-FeatureModel",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-SimuLizar
-        build.yaml
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
+          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ExperimentAutomation
+        build.yml
   Palladio-Addons-DataFlowConfidentiality-Analysis:
     needs:
     - Palladio-ThirdParty-EMFProfiles
@@ -1359,28 +1359,28 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Addons-DataFlowConfidentiality-Metamodel", "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-DataFlowConfidentiality-Analysis
-        build.yaml
+        build.yml
   Palladio-Addons-PerOpteryx:
     needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-ThirdParty-EMFProfiles
     - Palladio-Analyzer-SimuCom
-    - Palladio-Simulation-AbstractSimEngine
-    - Palladio-Supporting-WorkflowEngine
+    - Palladio-ThirdParty-EMFProfiles
+    - Palladio-Editors-Commons
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
+    - Palladio-Analyzer-SimuLizar
     - Palladio-Supporting-FeatureModel
-    - Palladio-Supporting-MDSDProfiles
+    - Palladio-Analyzer-Framework
+    - Palladio-QuAL-EDP2
     - Palladio-QuAL-SensorFramework
+    - Palladio-Analyzer-Reliability
     - Palladio-ThirdParty-Wrapper
     - Palladio-Core-Commons
-    - Palladio-Editors-Commons
-    - Palladio-Analyzer-Reliability
-    - Palladio-Analyzer-Solver
-    - Palladio-Analyzer-SimuLizar
     - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
+    - Palladio-Analyzer-Solver
+    - Palladio-Supporting-WorkflowEngine
+    - Palladio-Simulation-AbstractSimEngine
     - Palladio-QuAL-RecorderFramework
+    - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1393,24 +1393,24 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-FeatureModel",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-QuAL-SensorFramework",
-          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Analyzer-Reliability",
-          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
+          "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-SensorFramework",
+          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
+          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
+          "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-PerOpteryx
-        build.yaml
+        build.yml
   Palladio-Editors-Commons:
     needs:
     - Palladio-Core-Commons
+    - Palladio-QuAL-MetricSpecification
     - Palladio-Core-PCM
     - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-EDP2
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1424,11 +1424,33 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Supporting-Branding",
           "PalladioSimulator/Palladio-QuAL-EDP2"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-Commons
-        build.yaml
+        build.yml
+  Palladio-Core-PCM:
+    needs:
+    - Palladio-Core-Commons
+    - Palladio-QuAL-MetricSpecification
+    - Palladio-Supporting-Branding
+    - Palladio-QuAL-EDP2
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-QuAL-EDP2"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Core-PCM
+        build.yml
   Palladio-Supporting-FeatureModel:
     needs:
     - Palladio-Core-Commons
@@ -1446,26 +1468,4 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-FeatureModel
-        build.yaml
-  Palladio-Core-PCM:
-    needs:
-    - Palladio-Core-Commons
-    - Palladio-Supporting-Branding
-    - Palladio-QuAL-MetricSpecification
-    - Palladio-QuAL-EDP2
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-EDP2"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Core-PCM
-        build.yaml
+        build.yml

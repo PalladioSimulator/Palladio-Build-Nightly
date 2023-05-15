@@ -52,6 +52,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.PR_TOKEN }}
           commit-message: "auto-update nightly build"
           title: "auto-update nightly build"
           labels: auto-update

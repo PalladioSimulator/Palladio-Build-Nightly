@@ -81,14 +81,22 @@ class Github:
             time.sleep(REFRESH_TIMEOUT_SEC)
 
     def get_lastest_workflow_run(
-        self, owner: str, repository: str, workflow: Optional[str] = None
+        self,
+        owner: str,
+        repository: str,
+        filter_workflow: Optional[str] = None,
+        filter_conclusion: Optional[str] = None,
     ) -> Optional[Any]:
+        # Returns the last 30 workflow runs (page 1)
         resp = self._get_object(f"/repos/{owner}/{repository}/actions/runs")
         if resp["total_count"] == 0:
             return None
         for run in resp["workflow_runs"]:
-            if not workflow or workflow in run["path"]:
-                return run
+            if filter_workflow and filter_workflow not in run["path"]:
+                continue
+            if filter_conclusion and filter_conclusion != run["conclusion"]:
+                continue
+            return run
         return None
 
     def get_workflow_run(self, owner: str, repository: str, run_id: int):
@@ -136,13 +144,17 @@ def needs_workflow_execution(
     deps_json = os.environ.get("DEPENDENCIES", "[]")
     for dep in json.loads(deps_json):
         dep_owner, dep_repo = dep.split("/")
-        last_dep_run = github.get_lastest_workflow_run(dep_owner, dep_repo)
+        last_dep_run = github.get_lastest_workflow_run(
+            dep_owner, dep_repo, filter_conclusion="success"
+        )
         if not last_dep_run:
-            logging.debug(f"Dependency {dep} never had a workflow run. Skipping.")
+            logging.debug(
+                f"Dependency {dep} never had a successful workflow run. Skipping."
+            )
             continue
         last_dep_run_date = datetime.fromisoformat(last_dep_run["created_at"])
         logging.debug(
-            f"Dependency {dep} had a workflow run of {last_dep_run['path']} at {last_dep_run_date}"
+            f"Dependency {dep} had a successful workflow run of {last_dep_run['path']} at {last_dep_run_date}"
         )
         if last_run_date < last_dep_run_date:
             logging.debug(

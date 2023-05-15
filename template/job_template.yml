@@ -1,5 +1,6 @@
 ${{ repo_name_short }}:
   needs: ${{ deps_short }}
+  if: success() || failure()
   steps:
     - name: Checkout Code
       uses: actions/checkout@v3

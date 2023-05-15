@@ -19,6 +19,7 @@ REFRESH_TIMEOUT_SEC = 5
 # Time to wait until the dispached workflow shows up
 WORKFLOW_RUN_TIMEOUT_SEC = 60
 GITHUB_API_URL = "https://api.github.com"
+GITHUB_URL = "https://github.com"
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -173,6 +174,9 @@ containing a JSON array of Owner/Repo strings.""",
     )
 
     args = parser.parse_args()
+
+    logging.info(f"Repo: {GITHUB_URL}/{args.owner}/{args.repo}")
+    logging.info(f"Workflow: {args.workflow_name}")
 
     token = os.environ["GITHUB_OAUTH"]
     github = Github(token)

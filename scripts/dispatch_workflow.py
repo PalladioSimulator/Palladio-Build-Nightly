@@ -208,10 +208,16 @@ containing a JSON array of Owner/Repo strings.""",
         run = github.wait_for_workflow_run_completion(args.owner, args.repo, run_id)
 
         logging.info(f"Run completed with conclusion {run['conclusion']}")
-        if run["conclusion"] != "success":
-            exit(1)
     else:
-        logging.info("Already up-to-date.")
+        run = github.get_lastest_workflow_run(args.owner, args.repo, args.workflow_name)
+        if not run:
+            # In normal circumstances, this should never happen.
+            logging.error("Latest workflow run could not be fetched")
+            exit(1)
+        logging.info(f"Already up-to-date. (conclusion {run['conclusion']})")
+
+    if run["conclusion"] != "success":
+            exit(1)
 
 
 if __name__ == "__main__":

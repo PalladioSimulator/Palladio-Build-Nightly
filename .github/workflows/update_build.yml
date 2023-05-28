@@ -28,7 +28,7 @@ jobs:
         run: mvn -DskipTests clean package
       - name: Run Palladio-Build-DependencyTool
         id: dependencyTool
-        run: echo "DEPENDENCIES=$(java -jar target/deploy/dependencytool.jar -ri Palladio-Build-UpdateSite -ii -us 'https://updatesite.palladio-simulator.com/' -j -o dependencies PalladioSimulator)" >> "$GITHUB_OUTPUT"
+        run: echo "DEPENDENCIES=$(java -jar target/deploy/dependencytool.jar -ri Palladio-Build-UpdateSite -ii -us 'https://updatesite.palladio-simulator.com/' -rrf .github/workflows/build.yml -j -o dependencies PalladioSimulator)" >> "$GITHUB_OUTPUT"
 
   generateNightlyBuild:
     runs-on: ubuntu-latest

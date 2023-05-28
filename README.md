@@ -23,11 +23,15 @@ The build can be configured by changing the templates in the `/template` folder.
 
 ### `nightly_template.yml`
 
+Template for nightly build.
+
 | Variable | Type | Description |
 |----------|------|-------------|
 | `${{ jobs }}` | object | The jobs which are generated from `job_template.yml`. |
 
 ### `job_template.yml`
+
+Job template for automatically discovered jobs. These are inserted into the `${{ jobs }}` variable.
 
 | Variable | Type | Description |
 |----------|------|-------------|
@@ -36,3 +40,29 @@ The build can be configured by changing the templates in the `/template` folder.
 | `${{ deps_short }}` | array | The build dependencies. An array of short repository names. |
 | `${{ repo_owner }}` | string | The name of the owner. |
 | `${{ deps_json }}` | string | The build dependencies as JSON array. | 
+
+### `custom_jobs_template.yml`
+
+Define additional jobs that should be inserted into the `${{ jobs }}` variable. 
+Jobs under `templated` are created from the `job_template.yml` above. Jobs under `custom` are added as-is.
+
+Example:
+```yml
+templated:
+  # Must contain owner
+  PalladioSimulator/Palladio-Build-UpdateSite: ${{ repo_names }}
+  PalladioSimulator/Palladio-Bench-Product: ${{ repo_names }}
+
+custom:
+  MyCustomJob:
+    runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v3
+        - ...
+```
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| `${{ repo_names }}` | string | The full names of the automatically discovered repositories in the form `Owner/Reponame`. |
+| `${{ repo_names_short }}` | string | The names of the automatically discovered repositories in the form `Reponame` (without the owner). |

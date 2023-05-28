@@ -1,0 +1,5 @@
+templated:
+  PalladioSimulator/Palladio-Build-UpdateSite: ${{ repo_names }}
+  PalladioSimulator/Palladio-Bench-Product: ${{ repo_names }}
+
+custom:

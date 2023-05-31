@@ -3,7 +3,7 @@
 """Executes a Github Workflow and awaits its termination.
 
 The workflow must contain a workflow_dispatch trigger.
-This script exits with exit code 1 if the workflow does not complete with "success"
+This script exits with exit code 1 if the workflow does not complete with "success".
 """
 
 import argparse
@@ -171,7 +171,7 @@ def main():
         description="Executes a Github Workflow and awaits its termination",
         epilog="""Provide a token as GITHUB_OAUTH  environment variable.\n\n
 Optionally, dependencies can be provided as DEPENDENCIES environment variable,
-containing a JSON array of Owner/Repo strings.""",
+containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
     )
 
     parser.add_argument("owner")

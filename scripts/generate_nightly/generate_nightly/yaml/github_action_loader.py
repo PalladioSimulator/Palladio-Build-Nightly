@@ -7,6 +7,8 @@ class GithubActionResolver(Resolver):
     """
     A custom resolver that does not treat "on" as boolean (as per YAML spec),
     instead it is treated as string instead.
+
+    This is needed since GitHub actions have a key on: which defines the action triggers.
     """
     @classmethod
     def replace_implicit_resolver(cls, tag, regexp, old_first):

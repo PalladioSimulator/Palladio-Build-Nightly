@@ -8,11 +8,21 @@ from ..yaml.github_action_loader import GithubActionSafeLoader
 
 
 class Template:
+    """
+    Class to open, substitute and dump YAML templates for GitHub actions.
+
+    Variables are definded as {{ $variable }}. If a variable can not be resolved
+    it is ignored. This allows using this for GitHub actions.
+    """
+
     def __init__(self, path: Path):
         self.path = path
         self.data = None
 
     def load_raw(self) -> Any:
+        """
+        Load YAML a template without substitution.
+        """
         if not self.data:
             with open(self.path) as file:
                 self.data = yaml.load(
@@ -22,10 +32,16 @@ class Template:
         return self.data
 
     def load(self, variables: Dict[str, Any]):
+        """
+        Loads and substitutes a YAML template.
+        """
         data = Template._substitute(self.load_raw(), variables)
         return data
 
     def dump(self, variables: Dict[str, Any], path: Path):
+        """
+        Dumps the template substituted to path.
+        """
         with open(path, "w") as file:
             yaml.dump(
                 self.load(variables), file, default_flow_style=False, sort_keys=False
@@ -33,6 +49,9 @@ class Template:
 
     @staticmethod
     def _substitute(yamlobject: Any, variables: Dict[str, Any]):
+        """
+        Recursively substitutes the variables of the YAML object.
+        """
         match yamlobject:
             case dict():
                 return {
@@ -67,10 +86,16 @@ class Template:
 
     @staticmethod
     def _get_variables(string: str):
+        """
+        Finds all variables in a string.
+        """
         return re.findall(r"\$\{\{\s*(\S+)\s*\}\}", string)
 
     @staticmethod
     def _replace_variable(string: str, variable: str, value: str):
+        """
+        Replaces a variable with a value.
+        """
         return re.sub(
             r"\$\{\{\s*" + re.escape(variable) + r"\s*\}\}",
             value,

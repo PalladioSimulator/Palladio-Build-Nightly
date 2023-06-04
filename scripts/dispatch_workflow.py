@@ -15,7 +15,7 @@ from datetime import datetime
 from typing import Any, Optional
 from urllib.request import Request, urlopen
 
-REFRESH_TIMEOUT_SEC = 5
+REFRESH_TIMEOUT_SEC = 10
 # Time to wait until the dispached workflow shows up
 WORKFLOW_RUN_TIMEOUT_SEC = 60
 GITHUB_API_URL = "https://api.github.com"

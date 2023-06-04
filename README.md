@@ -1,5 +1,10 @@
 # Palladio-Build-Nightly
 
+This repository implements a dynamic build pipeline for Palladio.
+Projects that want to participate must provide a `.github/workflows/build.yml` file, a `features` and `bundles` folder and deploy themselves to the update-site that is configured in the `update_build.yml` workflow in this repository. 
+
+## Workflows
+
 This repository contains two workflows. `update_build.yml` runs a dependency tool to generate `nightly.yml` which contains the build jobs for the nightly build in the Palladio organization. The jobs do not actually build the project but trigger the workflows on the corresponding repo instead.
 
 - `update_build.yml`

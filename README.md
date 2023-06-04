@@ -64,5 +64,5 @@ custom:
 
 | Variable | Type | Description |
 |----------|------|-------------|
-| `${{ repo_names }}` | string | The full names of the automatically discovered repositories in the form `Owner/Reponame`. |
-| `${{ repo_names_short }}` | string | The names of the automatically discovered repositories in the form `Reponame` (without the owner). |
+| `${{ repo_names }}` | array | The full names of the automatically discovered repositories in the form `Owner/Reponame`. |
+| `${{ repo_names_short }}` | array | The names of the automatically discovered repositories in the form `Reponame` (without the owner). |

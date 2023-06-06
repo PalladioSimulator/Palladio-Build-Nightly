@@ -86,6 +86,7 @@ class Github:
         repository: str,
         filter_workflow: Optional[str] = None,
         filter_conclusion: Optional[str] = None,
+        filter_head_branch: Optional[str] = None,
     ) -> Optional[Any]:
         # Returns the last 30 workflow runs (page 1)
         resp = self._get_object(f"/repos/{owner}/{repository}/actions/runs")
@@ -95,6 +96,8 @@ class Github:
             if filter_workflow and filter_workflow not in run["path"]:
                 continue
             if filter_conclusion and filter_conclusion != run["conclusion"]:
+                continue
+            if filter_head_branch and filter_head_branch != run["head_branch"]:
                 continue
             return run
         return None
@@ -144,17 +147,21 @@ def needs_workflow_execution(
     deps_json = os.environ.get("DEPENDENCIES", "[]")
     for dep in json.loads(deps_json):
         dep_owner, dep_repo = dep.split("/")
+        dep_default_branch = github.get_default_branch(dep_owner, dep_repo)
         last_dep_run = github.get_lastest_workflow_run(
-            dep_owner, dep_repo, filter_conclusion="success"
+            dep_owner,
+            dep_repo,
+            filter_conclusion="success",
+            filter_head_branch=dep_default_branch,
         )
         if not last_dep_run:
             logging.debug(
-                f"Dependency {dep} never had a successful workflow run. Skipping."
+                f"Dependency {dep} never had a successful workflow run on branch {dep_default_branch}. Skipping."
             )
             continue
         last_dep_run_date = datetime.fromisoformat(last_dep_run["created_at"])
         logging.debug(
-            f"Dependency {dep} had a successful workflow run of {last_dep_run['path']} at {last_dep_run_date}"
+            f"Dependency {dep} had a successful workflow run of {last_dep_run['path']} at {last_dep_run_date} on branch {dep_default_branch}"
         )
         if last_run_date < last_dep_run_date:
             logging.debug(
@@ -217,7 +224,7 @@ containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
         logging.info(f"Already up-to-date. (conclusion {run['conclusion']})")
 
     if run["conclusion"] != "success":
-            exit(1)
+        exit(1)
 
 
 if __name__ == "__main__":

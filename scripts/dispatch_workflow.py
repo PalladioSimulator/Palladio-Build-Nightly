@@ -221,7 +221,14 @@ containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
             # In normal circumstances, this should never happen.
             logging.error("Latest workflow run could not be fetched")
             exit(1)
-        logging.info(f"Already up-to-date. (conclusion {run['conclusion']})")
+
+        if run["status"] == "completed":
+            logging.info(f"Already up-to-date. (conclusion {run['conclusion']})")
+        else:
+            run_id = run["id"]
+            logging.info(f"Waiting for externally triggered run {run_id} to complete")
+            run = github.wait_for_workflow_run_completion(args.owner, args.repo, run_id)
+            logging.info(f"Run completed with conclusion {run['conclusion']}")
 
     if run["conclusion"] != "success":
         exit(1)

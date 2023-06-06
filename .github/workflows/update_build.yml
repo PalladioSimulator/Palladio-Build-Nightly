@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: 'PalladioSimulator/Palladio-Build-DependencyTool'
-          ref: 'patch'
+          ref: '0.0.1'
       - name: Set up JDK
         uses: actions/setup-java@v3.11.0
         with:

@@ -1194,7 +1194,6 @@ jobs:
         build.yml
   Palladio-ReverseEngineering-SoMoX-RuleEngine:
     needs:
-    - Palladio-Addons-FluentApiModelGenerator
     - Palladio-Addons-PlantUML
     - Palladio-Core-PCM
     - Palladio-ReverseEngineering-RuleEngine-UpdateSite
@@ -1212,8 +1211,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
-          "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Core-PCM",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-SoMoX-RuleEngine

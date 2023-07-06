@@ -2,8 +2,7 @@ name: Nightly Build
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "autogenerate"
+  schedule:
+  - cron: "0 0 * * *"
 
 jobs: ${{ jobs }}

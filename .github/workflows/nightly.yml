@@ -1,9 +1,9 @@
 name: Nightly Build
 on:
   workflow_dispatch: null
-  push:
-    branches:
-    - autogenerate
+  schedule:
+  - cron: "0 0 * * *" 
+  
 jobs:
   Palladio-Addon-ArchitecturalTemplates:
     needs:

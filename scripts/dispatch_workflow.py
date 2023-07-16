@@ -128,7 +128,9 @@ def needs_workflow_execution(
 ):
     # Check if a build is necessary.
     # dependencies = json.loads(os.environ["DEPENDENCIES"])
-    last_run = github.get_lastest_workflow_run(owner, repository, workflow)
+    last_run = github.get_lastest_workflow_run(
+        owner, repository, workflow, filter_head_branch=ref
+    )
     if not last_run:
         logging.debug("Needs build. Reason: Workflow never run")
         return True
@@ -151,6 +153,7 @@ def needs_workflow_execution(
         last_dep_run = github.get_lastest_workflow_run(
             dep_owner,
             dep_repo,
+            workflow,
             filter_conclusion="success",
             filter_head_branch=dep_default_branch,
         )

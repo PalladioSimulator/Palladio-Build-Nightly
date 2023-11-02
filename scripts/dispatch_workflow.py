@@ -219,7 +219,7 @@ containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
 
         logging.info(f"Run completed with conclusion {run['conclusion']}")
     else:
-        run = github.get_lastest_workflow_run(args.owner, args.repo, args.workflow_name)
+        run = github.get_lastest_workflow_run(args.owner, args.repo, args.workflow_name, filter_head_branch=ref)
         if not run:
             # In normal circumstances, this should never happen.
             logging.error("Latest workflow run could not be fetched")

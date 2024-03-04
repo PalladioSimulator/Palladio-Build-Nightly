@@ -69,28 +69,6 @@ jobs:
           "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addon-ArchitecturalTemplates-LoadBalancing
         build.yml
-  Palladio-Addons-ContextConfidentiality-Metamodel:
-    needs:
-    - Palladio-Core-Commons
-    - Palladio-Core-PCM
-    - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ContextConfidentiality-Metamodel
-        build.yml
   Palladio-Addons-ExperimentAutomation:
     needs:
     - Palladio-Addons-ServiceLevelObjectives
@@ -358,6 +336,28 @@ jobs:
           "PalladioSimulator/Palladio-Simulation-Scheduler"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-SimuComExactSchedulers
         build.yml
+  Palladio-Addons-Vulnerability-Metamodel:
+    needs:
+    - Palladio-Core-Commons
+    - Palladio-Core-PCM
+    - Palladio-Editors-Commons
+    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-Vulnerability-Metamodel
+        build.yml
   Palladio-Analyzer-Framework:
     needs:
     - Palladio-Core-Commons
@@ -607,7 +607,6 @@ jobs:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
     - Palladio-Addon-ArchitecturalTemplates-LoadBalancing
-    - Palladio-Addons-ContextConfidentiality-Metamodel
     - Palladio-Addons-ExperimentAutomation
     - Palladio-Addons-FluentApiModelGenerator
     - Palladio-Addons-Indirections
@@ -616,6 +615,7 @@ jobs:
     - Palladio-Addons-PlantUML
     - Palladio-Addons-ServiceLevelObjectives
     - Palladio-Addons-SimuComExactSchedulers
+    - Palladio-Addons-Vulnerability-Metamodel
     - Palladio-Analyzer-Framework
     - Palladio-Analyzer-ProtoCom
     - Palladio-Analyzer-Reliability
@@ -668,11 +668,11 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
           "PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing",
-          "PalladioSimulator/Palladio-Addons-ContextConfidentiality-Metamodel", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
-          "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator", "PalladioSimulator/Palladio-Addons-Indirections",
-          "PalladioSimulator/Palladio-Addons-MeasurementsUI", "PalladioSimulator/Palladio-Addons-PerOpteryx",
-          "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
+          "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Addons-MeasurementsUI",
+          "PalladioSimulator/Palladio-Addons-PerOpteryx", "PalladioSimulator/Palladio-Addons-PlantUML",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers",
+          "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel", "PalladioSimulator/Palladio-Analyzer-Framework",
           "PalladioSimulator/Palladio-Analyzer-ProtoCom", "PalladioSimulator/Palladio-Analyzer-Reliability",
           "PalladioSimulator/Palladio-Analyzer-SimExp", "PalladioSimulator/Palladio-Analyzer-SimuCom",
           "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Solver",
@@ -698,7 +698,6 @@ jobs:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
     - Palladio-Addon-ArchitecturalTemplates-LoadBalancing
-    - Palladio-Addons-ContextConfidentiality-Metamodel
     - Palladio-Addons-ExperimentAutomation
     - Palladio-Addons-FluentApiModelGenerator
     - Palladio-Addons-Indirections
@@ -707,6 +706,7 @@ jobs:
     - Palladio-Addons-PlantUML
     - Palladio-Addons-ServiceLevelObjectives
     - Palladio-Addons-SimuComExactSchedulers
+    - Palladio-Addons-Vulnerability-Metamodel
     - Palladio-Analyzer-Framework
     - Palladio-Analyzer-ProtoCom
     - Palladio-Analyzer-Reliability
@@ -759,11 +759,11 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
           "PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing",
-          "PalladioSimulator/Palladio-Addons-ContextConfidentiality-Metamodel", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
-          "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator", "PalladioSimulator/Palladio-Addons-Indirections",
-          "PalladioSimulator/Palladio-Addons-MeasurementsUI", "PalladioSimulator/Palladio-Addons-PerOpteryx",
-          "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
+          "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Addons-MeasurementsUI",
+          "PalladioSimulator/Palladio-Addons-PerOpteryx", "PalladioSimulator/Palladio-Addons-PlantUML",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers",
+          "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel", "PalladioSimulator/Palladio-Analyzer-Framework",
           "PalladioSimulator/Palladio-Analyzer-ProtoCom", "PalladioSimulator/Palladio-Analyzer-Reliability",
           "PalladioSimulator/Palladio-Analyzer-SimExp", "PalladioSimulator/Palladio-Analyzer-SimuCom",
           "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Solver",

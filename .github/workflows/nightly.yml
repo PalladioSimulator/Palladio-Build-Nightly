@@ -15,7 +15,7 @@ jobs:
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
     - Palladio-QuAL-MonitorRepository
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Supporting-MDSDProfiles
     - Palladio-ThirdParty-EMFProfiles
     if: success() || failure()
@@ -35,7 +35,7 @@ jobs:
           "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
           "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addon-ArchitecturalTemplates
         build.yml
@@ -48,7 +48,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
           "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
           "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Core-Commons",
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addon-ArchitecturalTemplates-LoadBalancing
         build.yml
   Palladio-Addons-ExperimentAutomation:
@@ -83,7 +83,7 @@ jobs:
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MonitorRepository
     - Palladio-QuAL-RecorderFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-CloudScaleUsageEvolution
     - Palladio-ThirdParty-Library
     if: success() || failure()
@@ -104,7 +104,7 @@ jobs:
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ExperimentAutomation
         build.yml
@@ -112,7 +112,7 @@ jobs:
     needs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -126,7 +126,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-FluentApiModelGenerator
         build.yml
   Palladio-Addons-Indirections:
@@ -147,7 +147,7 @@ jobs:
     - Palladio-QuAL-MonitorRepository
     - Palladio-QuAL-ProbeFramework
     - Palladio-QuAL-RecorderFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     - Palladio-Simulation-Scheduler
     - Palladio-Supporting-MDSDProfiles
@@ -175,7 +175,7 @@ jobs:
           "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
           "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
           "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-Library",
@@ -192,7 +192,7 @@ jobs:
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MonitorRepository
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -209,7 +209,7 @@ jobs:
           "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-MeasurementsUI
         build.yml
   Palladio-Addons-PerOpteryx:
@@ -226,7 +226,7 @@ jobs:
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-RecorderFramework
     - Palladio-QuAL-SensorFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     - Palladio-Supporting-FeatureModel
     - Palladio-Supporting-MDSDProfiles
@@ -251,7 +251,7 @@ jobs:
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
           "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-QuAL-SensorFramework",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
           "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-Library",
           "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
@@ -261,7 +261,7 @@ jobs:
     needs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -275,7 +275,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-PlantUML
         build.yml
   Palladio-Addons-ServiceLevelObjectives:
@@ -287,7 +287,7 @@ jobs:
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MonitorRepository
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     if: success() || failure()
@@ -305,7 +305,7 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-ServiceLevelObjectives
         build.yml
@@ -315,7 +315,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-QuAL-ProbeFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     - Palladio-Simulation-Scheduler
     if: success() || failure()
@@ -332,7 +332,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Core-Commons",
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
           "PalladioSimulator/Palladio-Simulation-Scheduler"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-SimuComExactSchedulers
         build.yml
@@ -341,7 +341,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -355,7 +355,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Addons-Vulnerability-Metamodel
         build.yml
   Palladio-Analyzer-Framework:
@@ -363,7 +363,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Supporting-FeatureModel
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -378,7 +378,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-Supporting-FeatureModel"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Framework
         build.yml
@@ -390,7 +390,7 @@ jobs:
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
     - Palladio-QuAL-SensorFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Supporting-MDSDProfiles
     - Palladio-ThirdParty-EMFProfiles
     - Palladio-ThirdParty-Library
@@ -410,7 +410,7 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
           "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-SensorFramework",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-Library",
           "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-ProtoCom
@@ -425,7 +425,7 @@ jobs:
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-ProbeFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     if: success() || failure()
@@ -444,7 +444,7 @@ jobs:
           "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library",
           "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Reliability
         build.yml
@@ -460,7 +460,7 @@ jobs:
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MonitorRepository
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-Scheduler
     - Palladio-Supporting-Branding
     - Palladio-ThirdParty-Library
@@ -481,7 +481,7 @@ jobs:
           "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Solver",
           "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Supporting-Branding",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-SimExp
@@ -499,7 +499,7 @@ jobs:
     - Palladio-QuAL-ProbeFramework
     - Palladio-QuAL-RecorderFramework
     - Palladio-QuAL-SensorFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     - Palladio-Simulation-Scheduler
     - Palladio-Supporting-FeatureModel
@@ -522,7 +522,7 @@ jobs:
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
-          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
           "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-ThirdParty-Library",
           "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
@@ -543,7 +543,7 @@ jobs:
     - Palladio-QuAL-MonitorRepository
     - Palladio-QuAL-ProbeFramework
     - Palladio-QuAL-RecorderFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     - Palladio-Simulation-Scheduler
     - Palladio-Supporting-FeatureModel
@@ -571,7 +571,7 @@ jobs:
           "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
           "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Supporting-FeatureModel",
           "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-Library",
@@ -584,7 +584,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Wrapper
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -600,7 +600,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Core-Commons",
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Analyzer-Solver
         build.yml
   Palladio-Bench-Product:
@@ -639,7 +639,8 @@ jobs:
     - Palladio-QuAL-RecorderFramework
     - Palladio-QuAL-SensorFramework
     - Palladio-ReverseEngineering-Retriever
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-Vulnerability
     - Palladio-ReverseEngineering-SoMoX
     - Palladio-ReverseEngineering-SoMoX-SEFF
     - Palladio-Simulation-AbstractSimEngine
@@ -684,14 +685,14 @@ jobs:
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
           "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX",
-          "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor", "PalladioSimulator/Palladio-Supporting-FeatureModel",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
+          "PalladioSimulator/Palladio-ReverseEngineering-SoMoX", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF",
+          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor",
+          "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
+          "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Bench-Product
         build.yml
   Palladio-Build-UpdateSite:
@@ -730,7 +731,8 @@ jobs:
     - Palladio-QuAL-RecorderFramework
     - Palladio-QuAL-SensorFramework
     - Palladio-ReverseEngineering-Retriever
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-Vulnerability
     - Palladio-ReverseEngineering-SoMoX
     - Palladio-ReverseEngineering-SoMoX-SEFF
     - Palladio-Simulation-AbstractSimEngine
@@ -775,19 +777,19 @@ jobs:
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
           "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX",
-          "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine",
-          "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor", "PalladioSimulator/Palladio-Supporting-FeatureModel",
-          "PalladioSimulator/Palladio-Supporting-MDSDProfiles", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
+          "PalladioSimulator/Palladio-ReverseEngineering-SoMoX", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF",
+          "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
+          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor",
+          "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
+          "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper", "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Build-UpdateSite
         build.yml
   Palladio-Core-Commons:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -800,7 +802,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Core-Commons
         build.yml
   Palladio-Core-PCM:
@@ -808,7 +810,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -822,7 +824,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Core-PCM
         build.yml
   Palladio-Editors-Commons:
@@ -831,7 +833,7 @@ jobs:
     - Palladio-Core-PCM
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -846,7 +848,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-Commons
         build.yml
   Palladio-Editors-GMF:
@@ -854,7 +856,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -868,7 +870,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-GMF
         build.yml
   Palladio-Editors-Sirius:
@@ -878,7 +880,7 @@ jobs:
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
     - Palladio-Example-Models-Package
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Supporting-MDSDProfiles
     - Palladio-ThirdParty-EMFProfiles
     - Palladio-ThirdParty-YakinduStateCharts
@@ -897,7 +899,7 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
           "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Example-Models-Package",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-Sirius
         build.yml
@@ -908,7 +910,7 @@ jobs:
     - Palladio-Editors-Commons
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Supporting-MDSDProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -924,14 +926,14 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-Supporting-MDSDProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Editors-Tree
         build.yml
   Palladio-Example-Models-Package:
     needs:
     - Palladio-Addon-ArchitecturalTemplates
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -945,7 +947,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Example-Models-Package
         build.yml
   Palladio-QuAL-EDP2:
@@ -953,7 +955,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     if: success() || failure()
@@ -969,7 +971,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-EDP2
         build.yml
@@ -980,7 +982,7 @@ jobs:
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-RecorderFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -996,7 +998,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-ExperimentAnalysis
         build.yml
@@ -1004,7 +1006,7 @@ jobs:
     needs:
     - Palladio-Core-Commons
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1019,13 +1021,13 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-MeasurementFramework
         build.yml
   Palladio-QuAL-MetricSpecification:
     needs:
     - Palladio-Core-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1039,7 +1041,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-MetricSpecification
         build.yml
@@ -1051,7 +1053,7 @@ jobs:
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1068,7 +1070,7 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-MonitorRepository
         build.yml
   Palladio-QuAL-ProbeFramework:
@@ -1077,7 +1079,7 @@ jobs:
     - Palladio-QuAL-EDP2
     - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1093,7 +1095,7 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-ProbeFramework
         build.yml
   Palladio-QuAL-RecorderFramework:
@@ -1104,7 +1106,7 @@ jobs:
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-ProbeFramework
     - Palladio-QuAL-SensorFramework
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1121,13 +1123,13 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-SensorFramework",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-RecorderFramework
         build.yml
   Palladio-QuAL-SensorFramework:
     needs:
     - Palladio-Core-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Wrapper
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1141,7 +1143,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-QuAL-SensorFramework
         build.yml
@@ -1151,7 +1153,7 @@ jobs:
     - Palladio-Addons-PlantUML
     - Palladio-Core-Commons
     - Palladio-Core-PCM
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1166,10 +1168,10 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
           "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-Retriever
         build.yml
-  Palladio-ReverseEngineering-RuleEngine-UpdateSite:
+  Palladio-ReverseEngineering-Retriever-UpdateSite:
     needs: []
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1184,14 +1186,35 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '[]'
-      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-RuleEngine-UpdateSite
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-Retriever-UpdateSite
+        build.yml
+  Palladio-ReverseEngineering-Retriever-Vulnerability:
+    needs:
+    - Palladio-Addons-Vulnerability-Metamodel
+    - Palladio-Core-PCM
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-Retriever-Vulnerability
         build.yml
   Palladio-ReverseEngineering-SoMoX:
     needs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1206,7 +1229,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-SoMoX
         build.yml
@@ -1214,7 +1237,7 @@ jobs:
     needs:
     - Palladio-Addons-FluentApiModelGenerator
     - Palladio-Core-PCM
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1228,12 +1251,12 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-SoMoX-SEFF
         build.yml
   Palladio-Simulation-AbstractSimEngine:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     if: success() || failure()
@@ -1248,7 +1271,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Simulation-AbstractSimEngine
         build.yml
@@ -1256,7 +1279,7 @@ jobs:
     needs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-AbstractSimEngine
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1271,12 +1294,12 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-Simulation-AbstractSimEngine"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Simulation-Scheduler
         build.yml
   Palladio-Supporting-Branding:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1289,12 +1312,12 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-Branding
         build.yml
   Palladio-Supporting-EMFProfilesEditor:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-EMFProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1308,14 +1331,14 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-EMFProfilesEditor
         build.yml
   Palladio-Supporting-FeatureModel:
     needs:
     - Palladio-Core-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1328,13 +1351,13 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-FeatureModel
         build.yml
   Palladio-Supporting-MDSDProfiles:
     needs:
     - Palladio-Core-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-EMFProfiles
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1348,14 +1371,14 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-MDSDProfiles
         build.yml
   Palladio-Supporting-WorkflowEngine:
     needs:
     - Palladio-Core-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1368,7 +1391,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-Supporting-WorkflowEngine
         build.yml
   Palladio-ThirdParty-CloudScaleUsageEvolution:
@@ -1376,7 +1399,7 @@ jobs:
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1390,12 +1413,12 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-CloudScaleUsageEvolution
         build.yml
   Palladio-ThirdParty-EMFProfiles:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1408,7 +1431,7 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-EMFProfiles
         build.yml
   Palladio-ThirdParty-Library:
@@ -1430,7 +1453,7 @@ jobs:
         build.yml
   Palladio-ThirdParty-Wrapper:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ThirdParty-Library
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1444,13 +1467,13 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-Wrapper
         build.yml
   Palladio-ThirdParty-YakinduStateCharts:
     needs:
-    - Palladio-ReverseEngineering-RuleEngine-UpdateSite
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1463,6 +1486,6 @@ jobs:
     - name: Run remote workflow
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-RuleEngine-UpdateSite"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ThirdParty-YakinduStateCharts
         build.yml

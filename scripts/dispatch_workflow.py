@@ -146,6 +146,10 @@ def needs_workflow_execution(
         logging.debug("Needs build. Reason: Newer commit found")
         return True
 
+    if last_run["status"] == "completed" and last_run["conclusion"] != "success":
+        logging.debug("Needs build. Reason: Last build was unsuccessful")
+        return True
+
     deps_json = os.environ.get("DEPENDENCIES", "[]")
     for dep in json.loads(deps_json):
         dep_owner, dep_repo = dep.split("/")

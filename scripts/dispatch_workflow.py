@@ -21,7 +21,6 @@ WORKFLOW_RUN_TIMEOUT_SEC = 60
 GITHUB_API_URL = "https://api.github.com"
 GITHUB_URL = "https://github.com"
 
-
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -45,7 +44,7 @@ class Github:
         return obj["default_branch"]
 
     def dispatch_workflow(
-        self, owner: str, repository: str, ref: str, workflow_id_or_name: str
+            self, owner: str, repository: str, ref: str, workflow_id_or_name: str
     ):
         data = {"ref": ref}
         req = Request(
@@ -60,7 +59,7 @@ class Github:
                 raise RuntimeError()
 
     def dispatch_workflow_and_get_id(
-        self, owner: str, repository: str, ref: str, workflow_id_or_name: str
+            self, owner: str, repository: str, ref: str, workflow_id_or_name: str
     ) -> int:
         """
         Dispatches a workflow, then waits until the workflow shows up in the API.
@@ -81,12 +80,12 @@ class Github:
             time.sleep(REFRESH_TIMEOUT_SEC)
 
     def get_lastest_workflow_run(
-        self,
-        owner: str,
-        repository: str,
-        filter_workflow: Optional[str] = None,
-        filter_conclusion: Optional[str] = None,
-        filter_head_branch: Optional[str] = None,
+            self,
+            owner: str,
+            repository: str,
+            filter_workflow: Optional[str] = None,
+            filter_conclusion: Optional[str] = None,
+            filter_head_branch: Optional[str] = None,
     ) -> Optional[Any]:
         # Returns the last 30 workflow runs (page 1)
         resp = self._get_object(f"/repos/{owner}/{repository}/actions/runs")
@@ -109,7 +108,7 @@ class Github:
         return self._get_object(f"/repos/{owner}/{repository}/branches/{branch}")
 
     def wait_for_workflow_run_completion(
-        self, owner: str, repository: str, run_id: int
+            self, owner: str, repository: str, run_id: int
     ) -> Any:
         """
         Waits for the workflow run to complete and returns the run afterwards.
@@ -124,7 +123,7 @@ class Github:
 
 
 def needs_workflow_execution(
-    github: Github, owner: str, repository: str, ref: str, workflow: str
+        github: Github, owner: str, repository: str, ref: str, workflow: str
 ):
     # Check if a build is necessary.
     # dependencies = json.loads(os.environ["DEPENDENCIES"])
@@ -179,6 +178,20 @@ def needs_workflow_execution(
     return False
 
 
+def rebuild_repository(args, github, ref):
+    logging.info(f"Dispatch workflow {args.workflow_name}")
+    run_id = github.dispatch_workflow_and_get_id(
+        args.owner, args.repo, ref, args.workflow_name
+    )
+
+    logging.info(f"Waiting for run {run_id} to complete")
+    run = github.wait_for_workflow_run_completion(args.owner, args.repo, run_id)
+
+    logging.info(f"Run completed with conclusion {run['conclusion']}")
+
+    return run
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="dispatch_workflow.py",
@@ -210,18 +223,11 @@ containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
     ref = github.get_default_branch(args.owner, args.repo)
     logging.info(f"Detected default branch {ref}")
 
-    if args.force or needs_workflow_execution(
-        github, args.owner, args.repo, ref, args.workflow_name
-    ):
-        logging.info(f"Dispatch workflow {args.workflow_name}")
-        run_id = github.dispatch_workflow_and_get_id(
-            args.owner, args.repo, ref, args.workflow_name
-        )
-
-        logging.info(f"Waiting for run {run_id} to complete")
-        run = github.wait_for_workflow_run_completion(args.owner, args.repo, run_id)
-
-        logging.info(f"Run completed with conclusion {run['conclusion']}")
+    if args.force:
+        print("Repository rebuilt is forced by workflow initiator")
+        run = rebuild_repository(args, github, ref)
+    elif needs_workflow_execution(github, args.owner, args.repo, ref, args.workflow_name):
+        run = rebuild_repository(args, github, ref)
     else:
         run = github.get_lastest_workflow_run(args.owner, args.repo, args.workflow_name, filter_head_branch=ref)
         if not run:

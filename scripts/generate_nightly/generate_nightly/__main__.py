@@ -38,7 +38,7 @@ def main():
             "repo_name": repo_name,
             "repo_name_short": repo_name.split("/")[1],
             "repo_owner": repo_name.split("/")[0],
-            "deps_short": [dep_name.split("/")[1] for dep_name in dependencies],
+            "needs": [dep_name.split("/")[1] for dep_name in dependencies] + ["set-force-build"],
             "deps_json": json.dumps(dependencies),
         }
         jobs.update(job_template.load(variables))  # type: ignore

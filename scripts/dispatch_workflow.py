@@ -179,6 +179,20 @@ def needs_workflow_execution(
     return False
 
 
+def rebuild_repository(args, github, ref):
+    logging.info(f"Dispatch workflow {args.workflow_name}")
+    run_id = github.dispatch_workflow_and_get_id(
+        args.owner, args.repo, ref, args.workflow_name
+    )
+
+    logging.info(f"Waiting for run {run_id} to complete")
+    run = github.wait_for_workflow_run_completion(args.owner, args.repo, run_id)
+
+    logging.info(f"Run completed with conclusion {run['conclusion']}")
+
+    return run
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="dispatch_workflow.py",
@@ -210,18 +224,11 @@ containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
     ref = github.get_default_branch(args.owner, args.repo)
     logging.info(f"Detected default branch {ref}")
 
-    if args.force or needs_workflow_execution(
-        github, args.owner, args.repo, ref, args.workflow_name
-    ):
-        logging.info(f"Dispatch workflow {args.workflow_name}")
-        run_id = github.dispatch_workflow_and_get_id(
-            args.owner, args.repo, ref, args.workflow_name
-        )
-
-        logging.info(f"Waiting for run {run_id} to complete")
-        run = github.wait_for_workflow_run_completion(args.owner, args.repo, run_id)
-
-        logging.info(f"Run completed with conclusion {run['conclusion']}")
+    if args.force:
+        print("Repository rebuilt is forced by workflow initiator")
+        run = rebuild_repository(args, github, ref)
+    elif needs_workflow_execution(github, args.owner, args.repo, ref, args.workflow_name):
+        run = rebuild_repository(args, github, ref)
     else:
         run = github.get_lastest_workflow_run(args.owner, args.repo, args.workflow_name, filter_head_branch=ref)
         if not run:

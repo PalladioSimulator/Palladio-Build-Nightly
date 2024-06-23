@@ -1,5 +1,5 @@
 ${{ repo_name_short }}:
-  needs: ${{ deps_short }}
+  needs: ${{ needs }}
   if: success() || failure()
   runs-on: ubuntu-latest
   steps:

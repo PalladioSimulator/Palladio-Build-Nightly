@@ -51,7 +51,7 @@ class Template:
         """
         with open(path, "w") as file:
             yaml.dump(
-                self.load(variables), file, default_flow_style=False, sort_keys=False
+                self.load(variables), file, Dumper=yaml.SafeDumper, default_flow_style=False, sort_keys=False
             )
 
     @staticmethod

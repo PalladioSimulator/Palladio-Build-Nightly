@@ -7,6 +7,12 @@ import yaml
 from ..yaml.github_action_loader import GithubActionSafeLoader
 
 
+def str_presenter(dumper, data):
+    if '\n' in data:
+        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
+
+
 class Template:
     """
     Class to open, substitute and dump YAML templates for GitHub actions.
@@ -18,6 +24,7 @@ class Template:
     def __init__(self, path: Path):
         self.path = path
         self.data = None
+        yaml.add_representer(str, str_presenter, Dumper=yaml.SafeDumper)
 
     def load_raw(self) -> Any:
         """

@@ -10,6 +10,7 @@ from .template.template import Template
 PATH_JOB_TEMPLATE = Path("template/job_template.yml")
 PATH_NIGHTLY_TEMPLATE = Path("template/nightly_template.yml")
 PATH_CUSTOM_JOBS_TEMPLATE = Path("template/custom_jobs_template.yml")
+PATH_FORCE_REBUILD_TEMPLATE = Path("template/force_rebuild_template.yml")
 PATH_NIGHTLY = Path(".github/workflows/nightly.yml")
 
 
@@ -18,6 +19,7 @@ def main():
     repo_dependencies: Dict[str, List[str]] = json.loads(repo_dependencies_json)
 
     jobs = {}
+    jobs.update(Template(PATH_FORCE_REBUILD_TEMPLATE).load_raw())
 
     custom_jobs_template = Template(PATH_CUSTOM_JOBS_TEMPLATE)
     variables = {

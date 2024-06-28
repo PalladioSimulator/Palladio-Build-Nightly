@@ -8,11 +8,11 @@ set-force-build:
       run: |
         if [ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]; then
           echo "force_build=true" >> $GITHUB_OUTPUT
-          echo "Full rebuild initiated: Night build was triggered manually." 
+          echo "Full rebuild initiated: Nightly build was triggered manually." 
         elif [ $(date +%d) -eq 01 ]; then
           echo "force_build=true" >> $GITHUB_OUTPUT
           echo "Full monthly rebuild initiated: Today is the first of the month." 
         else
           echo "force_build=false" >> $GITHUB_OUTPUT
-          echo "Soft rebuild initiated: Night build was triggered automatically."
+          echo "Soft rebuild initiated: Nightly build was triggered automatically."
         fi

@@ -1,5 +1,5 @@
 ${{ repo_name_short }}:
-  needs: ${{ deps_short }}
+  needs: ${{ needs }}
   if: success() || failure()
   runs-on: ubuntu-latest
   steps:
@@ -13,4 +13,4 @@ ${{ repo_name_short }}:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: ${{ deps_json }}
-      run: python scripts/dispatch_workflow.py ${{ repo_owner }} ${{ repo_name_short }} build.yml
+      run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true' ]] && echo "-f") ${{ repo_owner }} ${{ repo_name_short }} build.yml

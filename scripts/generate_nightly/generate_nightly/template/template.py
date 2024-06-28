@@ -2,22 +2,21 @@ import re
 from pathlib import Path
 from typing import Any, Dict
 
-import yaml
-
-from ..yaml.github_action_loader import GithubActionSafeLoader
+from ruamel.yaml import YAML
 
 
 class Template:
     """
     Class to open, substitute and dump YAML templates for GitHub actions.
 
-    Variables are definded as {{ $variable }}. If a variable can not be resolved
+    Variables are defined as {{ $variable }}. If a variable can not be resolved
     it is ignored. This allows using this for GitHub actions.
     """
 
     def __init__(self, path: Path):
         self.path = path
         self.data = None
+        self.yaml = YAML()
 
     def load_raw(self) -> Any:
         """
@@ -25,10 +24,8 @@ class Template:
         """
         if not self.data:
             with open(self.path) as file:
-                self.data = yaml.load(
-                    file,
-                    Loader=GithubActionSafeLoader,
-                )
+                self.data = self.yaml.load(file)
+
         return self.data
 
     def load(self, variables: Dict[str, Any]):
@@ -43,9 +40,7 @@ class Template:
         Dumps the template substituted to path.
         """
         with open(path, "w") as file:
-            yaml.dump(
-                self.load(variables), file, default_flow_style=False, sort_keys=False
-            )
+            self.yaml.dump(self.load(variables), file)
 
     @staticmethod
     def _substitute(yamlobject: Any, variables: Dict[str, Any]):

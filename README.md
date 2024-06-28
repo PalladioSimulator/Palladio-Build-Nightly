@@ -20,6 +20,9 @@ This repository contains two workflows. `update_build.yml` runs a dependency too
         * No workflow was run on the repository.
         * There was a commit since the last workflow run.
         * There was a successful workflow run on a dependency since the last workflow run. Only the last 30 workflow runs are checked.
+     
+> [!NOTE]
+> On the first of the month and whenever the nighly build is triggered manually, all workflows are executed regardless of the above-defined preconditions.
 
 
 ## Configuration

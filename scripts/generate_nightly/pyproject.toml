@@ -8,7 +8,7 @@ packages = [{include = "generate_nightly"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-pyyaml = "^6.0"
+ruamel-yaml = "^0.18.0"
 
 
 [build-system]

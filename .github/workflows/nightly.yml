@@ -639,6 +639,7 @@ jobs:
     - Palladio-QuAL-RecorderFramework
     - Palladio-QuAL-SensorFramework
     - Palladio-ReverseEngineering-Retriever
+    - Palladio-ReverseEngineering-Retriever-Services
     - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ReverseEngineering-Retriever-Vulnerability
     - Palladio-ReverseEngineering-SoMoX
@@ -685,7 +686,8 @@ jobs:
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
           "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever",
-          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
           "PalladioSimulator/Palladio-ReverseEngineering-SoMoX", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF",
           "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor",
@@ -731,6 +733,7 @@ jobs:
     - Palladio-QuAL-RecorderFramework
     - Palladio-QuAL-SensorFramework
     - Palladio-ReverseEngineering-Retriever
+    - Palladio-ReverseEngineering-Retriever-Services
     - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-ReverseEngineering-Retriever-Vulnerability
     - Palladio-ReverseEngineering-SoMoX
@@ -777,7 +780,8 @@ jobs:
           "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
           "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
           "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever",
-          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
           "PalladioSimulator/Palladio-ReverseEngineering-SoMoX", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF",
           "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor",
@@ -1153,6 +1157,7 @@ jobs:
     - Palladio-Addons-PlantUML
     - Palladio-Core-Commons
     - Palladio-Core-PCM
+    - Palladio-ReverseEngineering-Retriever-Services
     - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1168,8 +1173,28 @@ jobs:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
           "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-Retriever
+        build.yml
+  Palladio-ReverseEngineering-Retriever-Services:
+    needs:
+    - Palladio-Core-PCM
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
+      run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-Retriever-Services
         build.yml
   Palladio-ReverseEngineering-Retriever-UpdateSite:
     needs: []
@@ -1192,6 +1217,7 @@ jobs:
     needs:
     - Palladio-Addons-Vulnerability-Metamodel
     - Palladio-Core-PCM
+    - Palladio-ReverseEngineering-Retriever-Services
     - Palladio-ReverseEngineering-Retriever-UpdateSite
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1206,7 +1232,8 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py PalladioSimulator Palladio-ReverseEngineering-Retriever-Vulnerability
         build.yml
   Palladio-ReverseEngineering-SoMoX:

@@ -10,6 +10,7 @@ from .template.template import Template
 PATH_JOB_TEMPLATE = Path("template/job_template.yml")
 PATH_NIGHTLY_TEMPLATE = Path("template/nightly_template.yml")
 PATH_CUSTOM_JOBS_TEMPLATE = Path("template/custom_jobs_template.yml")
+PATH_FORCE_REBUILD_TEMPLATE = Path("template/force_rebuild_template.yml")
 PATH_NIGHTLY = Path(".github/workflows/nightly.yml")
 
 
@@ -18,6 +19,7 @@ def main():
     repo_dependencies: Dict[str, List[str]] = json.loads(repo_dependencies_json)
 
     jobs = {}
+    jobs.update(Template(PATH_FORCE_REBUILD_TEMPLATE).load_raw())
 
     custom_jobs_template = Template(PATH_CUSTOM_JOBS_TEMPLATE)
     variables = {
@@ -38,7 +40,7 @@ def main():
             "repo_name": repo_name,
             "repo_name_short": repo_name.split("/")[1],
             "repo_owner": repo_name.split("/")[0],
-            "deps_short": [dep_name.split("/")[1] for dep_name in dependencies],
+            "needs": [dep_name.split("/")[1] for dep_name in dependencies] + ["set-force-build"],
             "deps_json": json.dumps(dependencies),
         }
         jobs.update(job_template.load(variables))  # type: ignore

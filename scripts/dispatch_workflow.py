@@ -225,7 +225,7 @@ containing a JSON dictionary of Owner/Repo -> Array[Owner/Repo].""",
     logging.info(f"Detected default branch {ref}")
 
     if args.force:
-        print("Repository rebuilt is forced by workflow initiator")
+        logging.info("Repository rebuilt is forced by workflow initiator")
         run = rebuild_repository(args, github, ref)
     elif needs_workflow_execution(github, args.owner, args.repo, ref, args.workflow_name):
         run = rebuild_repository(args, github, ref)

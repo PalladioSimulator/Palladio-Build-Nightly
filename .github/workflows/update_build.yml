@@ -14,7 +14,7 @@ jobs:
       dependencies: ${{ steps.dependencyTool.outputs.DEPENDENCIES }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: 'PalladioSimulator/Palladio-Build-DependencyTool'
           ref: '0.0.2'
@@ -34,7 +34,7 @@ jobs:
     needs: calculateDependencies
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install poetry
         run: pipx install poetry
       - name: Setup Python

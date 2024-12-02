@@ -501,20 +501,33 @@ jobs:
         ]] && echo "-f") PalladioSimulator Palladio-Analyzer-Reliability build.yml
   Palladio-Analyzer-SimExp:
     needs:
+    - Palladio-Addon-ArchitecturalTemplates
     - Palladio-Addons-ExperimentAutomation
+    - Palladio-Addons-ServiceLevelObjectives
     - Palladio-Analyzer-Framework
+    - Palladio-Analyzer-Reliability
     - Palladio-Analyzer-SimuCom
     - Palladio-Analyzer-SimuLizar
     - Palladio-Analyzer-Solver
     - Palladio-Core-Commons
     - Palladio-Core-PCM
+    - Palladio-Editors-Commons
     - Palladio-QuAL-EDP2
+    - Palladio-QuAL-ExperimentAnalysis
+    - Palladio-QuAL-MeasurementFramework
     - Palladio-QuAL-MetricSpecification
     - Palladio-QuAL-MonitorRepository
+    - Palladio-QuAL-ProbeFramework
+    - Palladio-QuAL-RecorderFramework
     - Palladio-ReverseEngineering-Retriever-UpdateSite
     - Palladio-Simulation-Scheduler
     - Palladio-Supporting-Branding
+    - Palladio-Supporting-FeatureModel
+    - Palladio-Supporting-MDSDProfiles
+    - Palladio-ThirdParty-CloudScaleUsageEvolution
+    - Palladio-ThirdParty-EMFProfiles
     - Palladio-ThirdParty-Library
+    - Palladio-ThirdParty-Wrapper
     - set-force-build
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -529,14 +542,20 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-ExperimentAutomation",
-          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Solver",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
+          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-Reliability",
+          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
+          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
           "PalladioSimulator/Palladio-Simulation-Scheduler", "PalladioSimulator/Palladio-Supporting-Branding",
-          "PalladioSimulator/Palladio-ThirdParty-Library"]'
+          "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
+          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
+          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Analyzer-SimExp build.yml
   Palladio-Analyzer-SimuCom:

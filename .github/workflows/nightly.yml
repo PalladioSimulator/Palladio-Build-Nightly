@@ -734,6 +734,7 @@ jobs:
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     - Palladio-ThirdParty-YakinduStateCharts
+    - Palladio-Build-UpdateSite
     - set-force-build
     if: success() || failure()
     runs-on: ubuntu-latest

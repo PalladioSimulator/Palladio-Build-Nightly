@@ -875,6 +875,7 @@ jobs:
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     - Palladio-ThirdParty-YakinduStateCharts
+	- Palladio-Build-UpdateSite
     - set-force-build
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -918,7 +919,7 @@ jobs:
           "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-LIMBO",
           "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
+          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts", "PalladioSimulator/Palladio-Build-UpdateSite"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Bench-Product build.yml
   Palladio-Build-UpdateSite:

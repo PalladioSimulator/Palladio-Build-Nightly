@@ -316,6 +316,41 @@ jobs:
           "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Addons-PlantUML build.yml
+  Palladio-Addons-Power:
+    needs:
+    - Palladio-Core-Commons
+    - Palladio-Core-PCM
+    - Palladio-Editors-Commons
+    - Palladio-QuAL-EDP2
+    - Palladio-QuAL-ExperimentAnalysis
+    - Palladio-QuAL-MeasurementFramework
+    - Palladio-QuAL-MetricSpecification
+    - Palladio-ReverseEngineering-Retriever-UpdateSite
+    - Palladio-ThirdParty-LIMBO
+    - Palladio-ThirdParty-Library
+    - Palladio-ThirdParty-Wrapper
+    - set-force-build
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
+          "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
+          "PalladioSimulator/Palladio-ThirdParty-LIMBO", "PalladioSimulator/Palladio-ThirdParty-Library",
+          "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
+      run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
+        ]] && echo "-f") PalladioSimulator Palladio-Addons-Power build.yml
   Palladio-Addons-SPD-Metamodel:
     needs:
     - Palladio-Core-Commons
@@ -827,6 +862,7 @@ jobs:
     - Palladio-Addons-MeasurementsUI
     - Palladio-Addons-PerOpteryx
     - Palladio-Addons-PlantUML
+    - Palladio-Addons-Power
     - Palladio-Addons-SPD-Metamodel
     - Palladio-Addons-ServiceLevelObjectives
     - Palladio-Addons-SimuComExactSchedulers
@@ -875,7 +911,6 @@ jobs:
     - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     - Palladio-ThirdParty-YakinduStateCharts
-	- Palladio-Build-UpdateSite
     - set-force-build
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -895,23 +930,23 @@ jobs:
           "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
           "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Addons-MeasurementsUI",
           "PalladioSimulator/Palladio-Addons-PerOpteryx", "PalladioSimulator/Palladio-Addons-PlantUML",
-          "PalladioSimulator/Palladio-Addons-SPD-Metamodel", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers", "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel",
-          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-ProtoCom",
-          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-Analyzer-SimExp",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
-          "PalladioSimulator/Palladio-Analyzer-Slingshot", "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring",
-          "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core", "PalladioSimulator/Palladio-Analyzer-Solver",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Editors-GMF",
-          "PalladioSimulator/Palladio-Editors-Sirius", "PalladioSimulator/Palladio-Editors-Tree",
-          "PalladioSimulator/Palladio-Example-Models-Package", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
-          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever",
-          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
-          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
+          "PalladioSimulator/Palladio-Addons-Power", "PalladioSimulator/Palladio-Addons-SPD-Metamodel",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers",
+          "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-Analyzer-ProtoCom", "PalladioSimulator/Palladio-Analyzer-Reliability",
+          "PalladioSimulator/Palladio-Analyzer-SimExp", "PalladioSimulator/Palladio-Analyzer-SimuCom",
+          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Slingshot",
+          "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring", "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core",
+          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Editors-GMF", "PalladioSimulator/Palladio-Editors-Sirius",
+          "PalladioSimulator/Palladio-Editors-Tree", "PalladioSimulator/Palladio-Example-Models-Package",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-QuAL-SensorFramework",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
           "PalladioSimulator/Palladio-ReverseEngineering-SoMoX", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF",
           "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor",
@@ -919,7 +954,7 @@ jobs:
           "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles", "PalladioSimulator/Palladio-ThirdParty-LIMBO",
           "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper",
-          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts", "PalladioSimulator/Palladio-Build-UpdateSite"]'
+          "PalladioSimulator/Palladio-ThirdParty-YakinduStateCharts"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Bench-Product build.yml
   Palladio-Build-UpdateSite:
@@ -932,6 +967,7 @@ jobs:
     - Palladio-Addons-MeasurementsUI
     - Palladio-Addons-PerOpteryx
     - Palladio-Addons-PlantUML
+    - Palladio-Addons-Power
     - Palladio-Addons-SPD-Metamodel
     - Palladio-Addons-ServiceLevelObjectives
     - Palladio-Addons-SimuComExactSchedulers
@@ -999,23 +1035,23 @@ jobs:
           "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
           "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Addons-MeasurementsUI",
           "PalladioSimulator/Palladio-Addons-PerOpteryx", "PalladioSimulator/Palladio-Addons-PlantUML",
-          "PalladioSimulator/Palladio-Addons-SPD-Metamodel", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers", "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel",
-          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-ProtoCom",
-          "PalladioSimulator/Palladio-Analyzer-Reliability", "PalladioSimulator/Palladio-Analyzer-SimExp",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Analyzer-SimuLizar",
-          "PalladioSimulator/Palladio-Analyzer-Slingshot", "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring",
-          "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core", "PalladioSimulator/Palladio-Analyzer-Solver",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-Editors-GMF",
-          "PalladioSimulator/Palladio-Editors-Sirius", "PalladioSimulator/Palladio-Editors-Tree",
-          "PalladioSimulator/Palladio-Example-Models-Package", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
-          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
-          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
-          "PalladioSimulator/Palladio-QuAL-SensorFramework", "PalladioSimulator/Palladio-ReverseEngineering-Retriever",
-          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite",
-          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
+          "PalladioSimulator/Palladio-Addons-Power", "PalladioSimulator/Palladio-Addons-SPD-Metamodel",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers",
+          "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel", "PalladioSimulator/Palladio-Analyzer-Framework",
+          "PalladioSimulator/Palladio-Analyzer-ProtoCom", "PalladioSimulator/Palladio-Analyzer-Reliability",
+          "PalladioSimulator/Palladio-Analyzer-SimExp", "PalladioSimulator/Palladio-Analyzer-SimuCom",
+          "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Slingshot",
+          "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-Monitoring", "PalladioSimulator/Palladio-Analyzer-Slingshot-Extension-PCM-Core",
+          "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Core-Commons",
+          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
+          "PalladioSimulator/Palladio-Editors-GMF", "PalladioSimulator/Palladio-Editors-Sirius",
+          "PalladioSimulator/Palladio-Editors-Tree", "PalladioSimulator/Palladio-Example-Models-Package",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-ExperimentAnalysis",
+          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
+          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
+          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-QuAL-SensorFramework",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Services",
+          "PalladioSimulator/Palladio-ReverseEngineering-Retriever-UpdateSite", "PalladioSimulator/Palladio-ReverseEngineering-Retriever-Vulnerability",
           "PalladioSimulator/Palladio-ReverseEngineering-SoMoX", "PalladioSimulator/Palladio-ReverseEngineering-SoMoX-SEFF",
           "PalladioSimulator/Palladio-Simulation-AbstractSimEngine", "PalladioSimulator/Palladio-Simulation-Scheduler",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-EMFProfilesEditor",

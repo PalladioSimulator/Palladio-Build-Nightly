@@ -129,6 +129,35 @@ jobs:
           "PalladioSimulator/Palladio-ThirdParty-EMFProfiles"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Addons-CostEfficiency build.yml
+  Palladio-Addons-Elasticity-Metamodel:
+    needs:
+    - Palladio-Addons-ServiceLevelObjectives
+    - Palladio-Core-Commons
+    - Palladio-Core-PCM
+    - Palladio-Editors-Commons
+    - Palladio-QuAL-EDP2
+    - Palladio-QuAL-MetricSpecification
+    - Palladio-QuAL-MonitorRepository
+    - set-force-build
+    if: success() || failure()
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+    - name: Run remote workflow
+      env:
+        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
+        FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository"]'
+      run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
+        ]] && echo "-f") PalladioSimulator Palladio-Addons-Elasticity-Metamodel build.yml
   Palladio-Addons-EnvironmentalDynamics:
     needs:
     - Palladio-Supporting-MDSDProfiles
@@ -438,6 +467,7 @@ jobs:
         ]] && echo "-f") PalladioSimulator Palladio-Addons-Power build.yml
   Palladio-Addons-SPD-Metamodel:
     needs:
+    - Palladio-Addons-Elasticity-Metamodel
     - Palladio-Core-Commons
     - Palladio-Core-PCM
     - Palladio-Editors-Commons
@@ -457,7 +487,8 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-Elasticity-Metamodel",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
           "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-EDP2",
           "PalladioSimulator/Palladio-QuAL-MetricSpecification"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
@@ -618,42 +649,6 @@ jobs:
           "PalladioSimulator/Palladio-Supporting-FeatureModel", "PalladioSimulator/Palladio-Supporting-WorkflowEngine"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Analyzer-Framework build.yml
-  Palladio-Analyzer-ProtoCom:
-    needs:
-    - Palladio-Analyzer-Framework
-    - Palladio-Analyzer-SimuCom
-    - Palladio-Core-Commons
-    - Palladio-Core-PCM
-    - Palladio-Editors-Commons
-    - Palladio-QuAL-SensorFramework
-    - Palladio-Supporting-Branding
-    - Palladio-Supporting-MDSDProfiles
-    - Palladio-Supporting-WorkflowEngine
-    - Palladio-ThirdParty-EMFProfiles
-    - Palladio-ThirdParty-Library
-    - Palladio-ThirdParty-Wrapper
-    - set-force-build
-    if: success() || failure()
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: 3.11
-    - name: Run remote workflow
-      env:
-        GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
-        FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
-          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
-          "PalladioSimulator/Palladio-Editors-Commons", "PalladioSimulator/Palladio-QuAL-SensorFramework",
-          "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-MDSDProfiles",
-          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-ThirdParty-EMFProfiles",
-          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
-      run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
-        ]] && echo "-f") PalladioSimulator Palladio-Analyzer-ProtoCom build.yml
   Palladio-Analyzer-Reliability:
     needs:
     - Palladio-Analyzer-Framework
@@ -860,7 +855,7 @@ jobs:
         ]] && echo "-f") PalladioSimulator Palladio-Analyzer-SimuLizar build.yml
   Palladio-Analyzer-Slingshot:
     needs:
-    - Palladio-Addons-SPD-Metamodel
+    - Palladio-Addons-Elasticity-Metamodel
     - Palladio-Analyzer-Framework
     - Palladio-Analyzer-SimuCom
     - Palladio-Core-Commons
@@ -889,14 +884,14 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-SPD-Metamodel", "PalladioSimulator/Palladio-Analyzer-Framework",
-          "PalladioSimulator/Palladio-Analyzer-SimuCom", "PalladioSimulator/Palladio-Core-Commons",
-          "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-QuAL-EDP2",
-          "PalladioSimulator/Palladio-QuAL-MeasurementFramework", "PalladioSimulator/Palladio-QuAL-MetricSpecification",
-          "PalladioSimulator/Palladio-QuAL-MonitorRepository", "PalladioSimulator/Palladio-QuAL-ProbeFramework",
-          "PalladioSimulator/Palladio-QuAL-RecorderFramework", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution", "PalladioSimulator/Palladio-ThirdParty-LIMBO",
-          "PalladioSimulator/Palladio-ThirdParty-Library"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Addons-Elasticity-Metamodel",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-SimuCom",
+          "PalladioSimulator/Palladio-Core-Commons", "PalladioSimulator/Palladio-Core-PCM",
+          "PalladioSimulator/Palladio-QuAL-EDP2", "PalladioSimulator/Palladio-QuAL-MeasurementFramework",
+          "PalladioSimulator/Palladio-QuAL-MetricSpecification", "PalladioSimulator/Palladio-QuAL-MonitorRepository",
+          "PalladioSimulator/Palladio-QuAL-ProbeFramework", "PalladioSimulator/Palladio-QuAL-RecorderFramework",
+          "PalladioSimulator/Palladio-Supporting-WorkflowEngine", "PalladioSimulator/Palladio-ThirdParty-CloudScaleUsageEvolution",
+          "PalladioSimulator/Palladio-ThirdParty-LIMBO", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Analyzer-Slingshot build.yml
   Palladio-Analyzer-Solver:
@@ -907,6 +902,7 @@ jobs:
     - Palladio-Editors-Commons
     - Palladio-Supporting-Branding
     - Palladio-Supporting-WorkflowEngine
+    - Palladio-ThirdParty-Library
     - Palladio-ThirdParty-Wrapper
     - set-force-build
     if: success() || failure()
@@ -925,7 +921,7 @@ jobs:
         DEPENDENCIES: '["PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Core-Commons",
           "PalladioSimulator/Palladio-Core-PCM", "PalladioSimulator/Palladio-Editors-Commons",
           "PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-Supporting-WorkflowEngine",
-          "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
+          "PalladioSimulator/Palladio-ThirdParty-Library", "PalladioSimulator/Palladio-ThirdParty-Wrapper"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Analyzer-Solver build.yml
   Palladio-Bench-Product:
@@ -933,6 +929,7 @@ jobs:
     - Palladio-Addon-ArchitecturalTemplates
     - Palladio-Addon-ArchitecturalTemplates-LoadBalancing
     - Palladio-Addons-CostEfficiency
+    - Palladio-Addons-Elasticity-Metamodel
     - Palladio-Addons-EnvironmentalDynamics
     - Palladio-Addons-ExperimentAutomation
     - Palladio-Addons-FailureScenario
@@ -948,7 +945,6 @@ jobs:
     - Palladio-Addons-Vulnerability-Metamodel
     - Palladio-Analyzer-Dependability-ML
     - Palladio-Analyzer-Framework
-    - Palladio-Analyzer-ProtoCom
     - Palladio-Analyzer-Reliability
     - Palladio-Analyzer-SimExp
     - Palladio-Analyzer-SimuCom
@@ -1004,15 +1000,15 @@ jobs:
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
           "PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing",
-          "PalladioSimulator/Palladio-Addons-CostEfficiency", "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics",
-          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-FailureScenario",
-          "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator", "PalladioSimulator/Palladio-Addons-Indirections",
-          "PalladioSimulator/Palladio-Addons-MeasurementsUI", "PalladioSimulator/Palladio-Addons-PerOpteryx",
-          "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Addons-Power",
-          "PalladioSimulator/Palladio-Addons-SPD-Metamodel", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers", "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel",
-          "PalladioSimulator/Palladio-Analyzer-Dependability-ML", "PalladioSimulator/Palladio-Analyzer-Framework",
-          "PalladioSimulator/Palladio-Analyzer-ProtoCom", "PalladioSimulator/Palladio-Analyzer-Reliability",
+          "PalladioSimulator/Palladio-Addons-CostEfficiency", "PalladioSimulator/Palladio-Addons-Elasticity-Metamodel",
+          "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
+          "PalladioSimulator/Palladio-Addons-FailureScenario", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
+          "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Addons-MeasurementsUI",
+          "PalladioSimulator/Palladio-Addons-PerOpteryx", "PalladioSimulator/Palladio-Addons-PlantUML",
+          "PalladioSimulator/Palladio-Addons-Power", "PalladioSimulator/Palladio-Addons-SPD-Metamodel",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers",
+          "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel", "PalladioSimulator/Palladio-Analyzer-Dependability-ML",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-Reliability",
           "PalladioSimulator/Palladio-Analyzer-SimExp", "PalladioSimulator/Palladio-Analyzer-SimuCom",
           "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Slingshot",
           "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Core-Commons",
@@ -1040,6 +1036,7 @@ jobs:
     - Palladio-Addon-ArchitecturalTemplates
     - Palladio-Addon-ArchitecturalTemplates-LoadBalancing
     - Palladio-Addons-CostEfficiency
+    - Palladio-Addons-Elasticity-Metamodel
     - Palladio-Addons-EnvironmentalDynamics
     - Palladio-Addons-ExperimentAutomation
     - Palladio-Addons-FailureScenario
@@ -1055,7 +1052,6 @@ jobs:
     - Palladio-Addons-Vulnerability-Metamodel
     - Palladio-Analyzer-Dependability-ML
     - Palladio-Analyzer-Framework
-    - Palladio-Analyzer-ProtoCom
     - Palladio-Analyzer-Reliability
     - Palladio-Analyzer-SimExp
     - Palladio-Analyzer-SimuCom
@@ -1111,15 +1107,15 @@ jobs:
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
         DEPENDENCIES: '["PalladioSimulator/Palladio-Addon-ArchitecturalTemplates",
           "PalladioSimulator/Palladio-Addon-ArchitecturalTemplates-LoadBalancing",
-          "PalladioSimulator/Palladio-Addons-CostEfficiency", "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics",
-          "PalladioSimulator/Palladio-Addons-ExperimentAutomation", "PalladioSimulator/Palladio-Addons-FailureScenario",
-          "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator", "PalladioSimulator/Palladio-Addons-Indirections",
-          "PalladioSimulator/Palladio-Addons-MeasurementsUI", "PalladioSimulator/Palladio-Addons-PerOpteryx",
-          "PalladioSimulator/Palladio-Addons-PlantUML", "PalladioSimulator/Palladio-Addons-Power",
-          "PalladioSimulator/Palladio-Addons-SPD-Metamodel", "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives",
-          "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers", "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel",
-          "PalladioSimulator/Palladio-Analyzer-Dependability-ML", "PalladioSimulator/Palladio-Analyzer-Framework",
-          "PalladioSimulator/Palladio-Analyzer-ProtoCom", "PalladioSimulator/Palladio-Analyzer-Reliability",
+          "PalladioSimulator/Palladio-Addons-CostEfficiency", "PalladioSimulator/Palladio-Addons-Elasticity-Metamodel",
+          "PalladioSimulator/Palladio-Addons-EnvironmentalDynamics", "PalladioSimulator/Palladio-Addons-ExperimentAutomation",
+          "PalladioSimulator/Palladio-Addons-FailureScenario", "PalladioSimulator/Palladio-Addons-FluentApiModelGenerator",
+          "PalladioSimulator/Palladio-Addons-Indirections", "PalladioSimulator/Palladio-Addons-MeasurementsUI",
+          "PalladioSimulator/Palladio-Addons-PerOpteryx", "PalladioSimulator/Palladio-Addons-PlantUML",
+          "PalladioSimulator/Palladio-Addons-Power", "PalladioSimulator/Palladio-Addons-SPD-Metamodel",
+          "PalladioSimulator/Palladio-Addons-ServiceLevelObjectives", "PalladioSimulator/Palladio-Addons-SimuComExactSchedulers",
+          "PalladioSimulator/Palladio-Addons-Vulnerability-Metamodel", "PalladioSimulator/Palladio-Analyzer-Dependability-ML",
+          "PalladioSimulator/Palladio-Analyzer-Framework", "PalladioSimulator/Palladio-Analyzer-Reliability",
           "PalladioSimulator/Palladio-Analyzer-SimExp", "PalladioSimulator/Palladio-Analyzer-SimuCom",
           "PalladioSimulator/Palladio-Analyzer-SimuLizar", "PalladioSimulator/Palladio-Analyzer-Slingshot",
           "PalladioSimulator/Palladio-Analyzer-Solver", "PalladioSimulator/Palladio-Core-Commons",
@@ -1145,6 +1141,7 @@ jobs:
   Palladio-Core-Commons:
     needs:
     - Palladio-Supporting-Branding
+    - Palladio-ThirdParty-Library
     - set-force-build
     if: success() || failure()
     runs-on: ubuntu-latest
@@ -1159,7 +1156,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding"]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding", "PalladioSimulator/Palladio-ThirdParty-Library"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-Core-Commons build.yml
   Palladio-Core-PCM:

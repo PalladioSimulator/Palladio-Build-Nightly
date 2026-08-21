@@ -1836,6 +1836,7 @@ jobs:
   Palladio-ThirdParty-EMFProfiles:
     needs:
     - set-force-build
+    - Palladio-Supporting-Branding
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1849,7 +1850,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '[]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-ThirdParty-EMFProfiles build.yml
   Palladio-ThirdParty-LIMBO:
@@ -1876,6 +1877,7 @@ jobs:
   Palladio-ThirdParty-Library:
     needs:
     - set-force-build
+    - Palladio-Supporting-Branding
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1889,7 +1891,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '[]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-ThirdParty-Library build.yml
   Palladio-ThirdParty-Wrapper:
@@ -1916,6 +1918,7 @@ jobs:
   Palladio-ThirdParty-YakinduStateCharts:
     needs:
     - set-force-build
+    - Palladio-Supporting-Branding
     if: success() || failure()
     runs-on: ubuntu-latest
     steps:
@@ -1929,7 +1932,7 @@ jobs:
       env:
         GITHUB_OAUTH: ${{ secrets.WORKFLOW_DISPATCH_TOKEN }}
         FORCE_BUILD: ${{needs.set-force-build.outputs.force_build}}
-        DEPENDENCIES: '[]'
+        DEPENDENCIES: '["PalladioSimulator/Palladio-Supporting-Branding"]'
       run: python scripts/dispatch_workflow.py $([[ "${{ env.FORCE_BUILD }}" == 'true'
         ]] && echo "-f") PalladioSimulator Palladio-ThirdParty-YakinduStateCharts
         build.yml
